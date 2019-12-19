@@ -3,16 +3,16 @@ package newlang4;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class End {
-	
+public class End extends Node{
+
 	Environment env;
-	
+
 	static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
 			LexicalType.END
 			);
 
-	public End(){
-
+	public End(Environment env){
+		this.env = env;
 	}
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
@@ -24,9 +24,14 @@ public class End {
 		return new End(env);//StmtListクラスをインスタンス化する
 	}
 
-	public boolean parse() throws Exception{
+	public boolean parse() throws Exception{//ここでENDかどうか
 
+		LexicalUnit first = env.getInput().get();
+
+		if(End.isFirst(first)) {
+		return true;
+		}
+		System.exit(-1);
 		return false;
 	}
 }
-

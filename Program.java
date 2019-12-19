@@ -6,7 +6,7 @@ import java.util.Set;
 public class Program extends Node{ //ここに3つのメソッドを書き加えればいい。Nodeは全てのクラスに必要になる
 
 	Environment env;
-	Node handler;
+	Node handler ;
 
 	public Program(Environment env) {//コンストラクタ
 		this.env = env;
@@ -38,9 +38,9 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 		//こっちであらたにfirstを読み込む
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		//env.getInput().unget(first);
+		env.getInput().unget(first);
 		if(StmtList.isFirst(first)) { //次の判定を開始する
-			handler = StmtList.getHandler(first,env);//
+			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
 
 			return handler.parse();
 		}
@@ -49,7 +49,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 	public String toString() { //handerが出力するのはこれ
 
-		return "とうとうか？"  + handler.toString() ;
+		return "Program"  + " "+ handler.toString() ;
 	}
 		//ここでProgramとStmtListのparseを渡す
 }

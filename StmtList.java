@@ -25,7 +25,6 @@ public class StmtList extends Node {
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-
 	public static StmtList getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
 
 		return new StmtList(env);//StmtListクラスをインスタンス化する
@@ -35,18 +34,17 @@ public class StmtList extends Node {
 
 		LexicalUnit first = env.getInput().get();
 		//ここでツリーを作る
-		while(true) {
-		if(Stmt.isFirst(first)) {
-			handler = Stmt.getHandler(first , env);
-			return handler.parse();
-		}else {
-			return false;
-		}
-		}
-	}
-	public String toString() {
 
-		return "ここも出力したいよ";
+				if(Stmt.isFirst(first)) {
+					handler = Stmt.getHandler(first , env);
+					return handler.parse();
+				}else {
+			return false;
+				}
+			}
+
+	public String toString() {
+		return "Stmt_List" + " " + handler.toString();
 	}
 }
 

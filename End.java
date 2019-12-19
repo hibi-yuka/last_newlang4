@@ -29,6 +29,7 @@ public class End extends Node{
 		LexicalUnit first = env.getInput().get();
 
 		if(End.isFirst(first)) {
+
 		return true;
 		}
 		System.exit(-1);

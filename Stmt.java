@@ -35,7 +35,8 @@ public class Stmt extends Node {
 		}
 		return false;
 	}
-	public String toString() {	
-		return "いけるよ";
+	public String toString() {
+
+		return "Stmt";
 	}
 }

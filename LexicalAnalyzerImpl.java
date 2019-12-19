@@ -2,7 +2,9 @@ package newlang4;
 
 import java.io.IOException;
 import java.io.PushbackReader;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class LexicalAnalyzerImpl implements LexicalAnalyzer {
@@ -12,6 +14,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 	String input;
 	private static Map<String, LexicalUnit> Reservation = new HashMap<String, LexicalUnit>();
 	private static Map<String, LexicalUnit> operator = new HashMap<String, LexicalUnit>();
+    public List<LexicalUnit> list = new ArrayList<LexicalUnit>();
 
 	static {
 		Reservation.put("IF", new LexicalUnit(LexicalType.IF));
@@ -57,19 +60,19 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 
 	public LexicalAnalyzerImpl(PushbackReader pr) {
 		this.word = pr;
-
 	}
 
-	//public LexicalAnalyzerImpl(String string) {
-	// TODO 自動生成されたコンストラクター・スタブ
-	//}
-
 	@Override
-	public LexicalUnit get() throws Exception {
+	public LexicalUnit get() throws Exception {//次を読むか、ungetを読むか
+
+		if(!list.isEmpty()) {
+			LexicalUnit re = list.get(list.size()-1);
+			list.remove(list.size()-1);
+			return re;
+		}
 
 		int inword = word.read();
 		String first = (char) inword + "";
-
 		while (first.equals(" ") || first.equals("\t")) {
 			inword = word.read();
 			first = (char) inword + "";
@@ -179,8 +182,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 
 	@Override
 	public void unget(LexicalUnit token) throws Exception { //LexicalUnitのみ取ればいいので、文字は読まなかった事にする
-		// TODO 自動生成されたメソッド・スタブ
-        //unget.Buffer 読まなかった事にする。LexicalUnitをとっておけばいい
-
+		list.add(token);//読み込んだものをリストとして保存しておく。
+		 //unget.Buffer 読まなかった事にする。LexicalUnitをとっておけばい
 	}
 }

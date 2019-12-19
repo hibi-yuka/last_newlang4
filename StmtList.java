@@ -39,11 +39,11 @@ public class StmtList extends Node {
 			Node handler = Stmt.getHandler(first , env);
 			return handler.parse();
 		}else {
-			break;//
+			return false;
+		}
 		}
 	}
-	return false;
-	}
 }
+
 
 

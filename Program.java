@@ -45,9 +45,13 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 		return false;
 	}
 
-	public String toString() {
+	public String toString() { //handerが出力するのはこれ
 
-		return "頑張れ俺、ちゃんとできる";
+		return  "ここまでは出力できています" ;
 	}
-
+		//ここでProgramとStmtListのparseを渡す
 }
+
+
+
+

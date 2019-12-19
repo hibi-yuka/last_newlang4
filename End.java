@@ -27,7 +27,6 @@ public class End extends Node{
 	public boolean parse() throws Exception{//ここでENDかどうか
 
 		LexicalUnit first = env.getInput().get();
-
 		if(End.isFirst(first)) {
 		return true;
 		}

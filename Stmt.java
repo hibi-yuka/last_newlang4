@@ -28,21 +28,13 @@ public class Stmt extends Node {
 
 	public boolean parse() throws Exception{
 
-		LexicalUnit first = env.getInput().get();
-		//ここでツリーを作る
-		while(true) {
-		if(If_prefix.isFirst(first)) {
-			Node handler = If_prefix.getHandler(first , env);
-			handler.parse();
-		}else if(Subst.isFirst(first)) {
-			Node handler = Subst.getHandler(first , env);
-			return handler.parse();
-		}else if(Call_sub.isFirst(first)) {
-			Node handler = Call_sub.getHandler(first , env);
+		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+		env.getInput().unget(first);
+		if(End.isFirst(first)) { //次の判定を開始する
+			Node handler = End.getHandler(first,env);//
 			return handler.parse();
 		}
-			break;
-		}
-			return false;
+		return false;
 	}
+
 }

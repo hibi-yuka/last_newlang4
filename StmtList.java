@@ -41,9 +41,6 @@ public class StmtList extends Node {
 		if(Stmt.isFirst(first)) {
 			Node handler = Stmt.getHandler(first , env);
 			return handler.parse();
-		}else if(Block.isFirst(first)) {
-			Node handler = StmtList.getHandler(first , env);
-			return handler.parse();
 		}else {
 			break;//
 		}

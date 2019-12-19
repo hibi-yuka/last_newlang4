@@ -1,12 +1,15 @@
 package newlang4;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.List;
 import java.util.Set;
 
 public class StmtList extends Node {
 
 	Environment env;
 	Node handler;
+	 public List<Node> handlerlist = new ArrayList<Node>();
 
 	public StmtList(Environment env) {
 		this.env = env;
@@ -30,21 +33,29 @@ public class StmtList extends Node {
 		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
 
+
+
+
 	public boolean parse() throws Exception{
 
 	LexicalUnit first = env.getInput().get();
 	env.getInput().unget(first);
 	System.out.println(first);
 		//ここでツリーを作る
-
-
+	while(true) { //stmtである限り繰り返す
 	    if(Stmt.isFirst(first)) {
 			handler = Stmt.getHandler(first , env);
-			return handler.parse();
-
+			handler.parse();
+			handlerlist.add(handler);
+	    } else {
+	    	return handler.parse();
+			}
+	    first = env.getInput().get();
+	    break;
 	}
-	return false;
-}
+
+
+
 
 	public String toString() {
 		return "Stmt_List" + "" +  handler.toString();

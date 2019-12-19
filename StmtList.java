@@ -48,17 +48,17 @@ public class StmtList extends Node {
 			handler.parse();
 			handlerlist.add(handler);
 	    } else {
-	    	return handler.parse();
+	    	return true;//IOF、ELSEなどが来た時に抜ける
 			}
 	    first = env.getInput().get();
 	    break;
 	}
-
-
+	return false;
+	}
 
 
 	public String toString() {
-		return "Stmt_List" + "" +  handler.toString();
+		return "Stmt_List" + "" +  handlerlist.toString();
 	}
 }
 

@@ -6,6 +6,7 @@ import java.util.Set;
 public class StmtList extends Node {
 
 	Environment env;
+	Node handler;
 
 	public StmtList(Environment env) {
 		this.env = env;
@@ -36,12 +37,16 @@ public class StmtList extends Node {
 		//ここでツリーを作る
 		while(true) {
 		if(Stmt.isFirst(first)) {
-			Node handler = Stmt.getHandler(first , env);
+			handler = Stmt.getHandler(first , env);
 			return handler.parse();
 		}else {
 			return false;
 		}
 		}
+	}
+	public String toString() {
+
+		return "ここも出力したいよ";
 	}
 }
 

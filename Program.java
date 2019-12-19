@@ -6,6 +6,7 @@ import java.util.Set;
 public class Program extends Node{ //ここに3つのメソッドを書き加えればいい。Nodeは全てのクラスに必要になる
 
 	Environment env;
+	Node handler;
 
 	public Program(Environment env) {//コンストラクタ
 		this.env = env;
@@ -37,9 +38,10 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 		//こっちであらたにfirstを読み込む
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		env.getInput().unget(first);
+		//env.getInput().unget(first);
 		if(StmtList.isFirst(first)) { //次の判定を開始する
-			Node handler = StmtList.getHandler(first,env);//
+			handler = StmtList.getHandler(first,env);//
+
 			return handler.parse();
 		}
 		return false;
@@ -47,7 +49,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 	public String toString() { //handerが出力するのはこれ
 
-		return  "ここまでは出力できています" ;
+		return "とうとうか？"  + handler.toString() ;
 	}
 		//ここでProgramとStmtListのparseを渡す
 }

@@ -66,9 +66,9 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 	public LexicalUnit get() throws Exception {//次を読むか、ungetを読むか
 
 		if(!list.isEmpty()) {
-			LexicalUnit re = list.get(list.size()-1);
+			LexicalUnit List_UNIT = list.get(list.size()-1);
 			list.remove(list.size()-1);
-			return re;
+			return List_UNIT;
 		}
 
 		int inword = word.read();

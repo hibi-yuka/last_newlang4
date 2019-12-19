@@ -35,4 +35,9 @@ public class End extends Node{
 		System.exit(-1);
 		return false;
 	}
+
+	public String toString() {
+
+		return "END";
+	}
 }

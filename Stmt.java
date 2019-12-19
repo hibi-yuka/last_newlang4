@@ -37,6 +37,6 @@ public class Stmt extends Node {
 	}
 	public String toString() {
 
-		return "Stmt";
+		return "Stmt" + handler.toString();
 	}
 }

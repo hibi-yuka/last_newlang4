@@ -26,27 +26,23 @@ public class StmtList extends Node {
 	}
 
 	public static StmtList getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-
 		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
 
 	public boolean parse() throws Exception{
 
-		LexicalUnit first = env.getInput().get();
+	LexicalUnit first = env.getInput().get();
 		//ここでツリーを作る
-
-				if(Stmt.isFirst(first)) {
-					handler = Stmt.getHandler(first , env);
-					return handler.parse();
-				}else {
-			return false;
-				}
-			}
+	if(Stmt.isFirst(first)) {
+		handler = Stmt.getHandler(first , env);
+		return handler.parse();
+		}
+		return false;
+	}
 
 	public String toString() {
+
 		return "Stmt_List" + " " + handler.toString();
 	}
 }
-
-
 

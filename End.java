@@ -7,6 +7,7 @@ public class End extends Node{
 
 	Environment env;
 
+
 	static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
 			LexicalType.END
 			);
@@ -28,9 +29,10 @@ public class End extends Node{
 
 		LexicalUnit first = env.getInput().get();
 		env.getInput().unget(first);
+
 		if(End.isFirst(first)) {
-		return true;
-		}
+			return true;
+			}
 		System.exit(-1);
 		return false;
 	}

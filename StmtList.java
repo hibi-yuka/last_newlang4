@@ -18,7 +18,8 @@ public class StmtList extends Node {
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.DO,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
@@ -33,16 +34,19 @@ public class StmtList extends Node {
 
 	LexicalUnit first = env.getInput().get();
 	env.getInput().unget(first);
+	System.out.println(first);
 		//ここでツリーを作る
-	if(Stmt.isFirst(first)) {
-		handler = Stmt.getHandler(first , env);
-		return handler.parse();
-		}
-		return false;
+
+
+	    if(Stmt.isFirst(first)) {
+			handler = Stmt.getHandler(first , env);
+			return handler.parse();
+
 	}
+	return false;
+}
 
 	public String toString() {
-
 		return "Stmt_List" + "" +  handler.toString();
 	}
 }

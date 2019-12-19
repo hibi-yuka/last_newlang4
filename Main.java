@@ -25,7 +25,6 @@ public class Main {
 			try {
 				fr = new FileReader(file);
 			} catch (FileNotFoundException e) {
-
 				e.printStackTrace();
 			}
 			PushbackReader pr = new PushbackReader(fr);
@@ -33,7 +32,7 @@ public class Main {
 	        lex = new LexicalAnalyzerImpl(pr);
 	        env = new Environment(lex);
 
-	        first = lex.get();//ここでエラー
+	        first = lex.get();//
 	        lex.unget(first);//今読んだものが読める
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
@@ -43,7 +42,6 @@ public class Main {
 	        	handler.parse();//それに向かってparseへ
 	        	//作ったオブジェクト利用する
 	        	System.out.println(handler); //handler.toStringで出力される
-
 	        }
 	        else System.out.println("syntax error");//入ってなかったら文法エラーで
 	}

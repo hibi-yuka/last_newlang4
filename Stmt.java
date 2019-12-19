@@ -15,7 +15,8 @@ public class Stmt extends Node {
 	static final Set<LexicalType> fristSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
-			LexicalType.END
+			LexicalType.END,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
@@ -30,14 +31,17 @@ public class Stmt extends Node {
 
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
+
+
 		if(End.isFirst(first)) { //次の判定を開始する
 			handler = End.getHandler(first ,env);//
 			return handler.parse();
+
 		}
 		return false;
 	}
-	public String toString() {
 
-		return "Stmt" + "" + handler.toString() ;
+	public String toString() {
+		return "Stmt" + " " + handler.toString() ;
 	}
 }

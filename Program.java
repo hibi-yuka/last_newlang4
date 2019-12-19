@@ -19,7 +19,8 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.DO,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
@@ -39,9 +40,9 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 		//こっちで新たにfirstを読み込む
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);//ungetして配列として保管する
-		if(StmtList.isFirst(first)) { //次の判定を開始する
-			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
 
+		if(StmtList.isFirst(first) ) { //次の判定を開始する
+			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
 			return handler.parse();
 		}
 		return false;

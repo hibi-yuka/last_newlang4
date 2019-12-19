@@ -61,7 +61,6 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 	}
 
 	public LexicalAnalyzerImpl(String string) {
-		this.input = string;
 		// TODO 自動生成されたコンストラクター・スタブ
 	}
 
@@ -180,10 +179,8 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 
 	@Override
 	public void unget(LexicalUnit token) throws Exception { //LexicalUnitのみ取ればいいので、文字は読まなかった事にする
-
-
 		// TODO 自動生成されたメソッド・スタブ
-//unget.Buffer 読まなかった事にする。LexicalUnitをとっておけばいい
+        //unget.Buffer 読まなかった事にする。LexicalUnitをとっておけばいい
 
 	}
 }

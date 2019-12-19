@@ -42,7 +42,7 @@ public class StmtList extends Node {
 
 	public String toString() {
 
-		return "Stmt_List" + " " + handler.toString();
+		return "Stmt_List" + "" +  handler.toString();
 	}
 }
 

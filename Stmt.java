@@ -29,7 +29,7 @@ public class Stmt extends Node {
 	public boolean parse() throws Exception{
 
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		//env.getInput().unget(first);
+		env.getInput().unget(first);
 		if(End.isFirst(first)) { //次の判定を開始する
 			handler = End.getHandler(first ,env);//
 			return handler.parse();

@@ -34,11 +34,11 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
         return null;
 	}
 
-	public boolean parse() throws Exception{ //三つ目のメソッド
+	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
-		//こっちであらたにfirstを読み込む
+		//こっちで新たにfirstを読み込む
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		env.getInput().unget(first);
+		env.getInput().unget(first);//ungetして配列として保管する
 		if(StmtList.isFirst(first)) { //次の判定を開始する
 			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
 

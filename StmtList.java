@@ -32,6 +32,7 @@ public class StmtList extends Node {
 	public boolean parse() throws Exception{
 
 	LexicalUnit first = env.getInput().get();
+	env.getInput().unget(first);
 		//ここでツリーを作る
 	if(Stmt.isFirst(first)) {
 		handler = Stmt.getHandler(first , env);

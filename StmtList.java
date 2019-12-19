@@ -20,7 +20,6 @@ public class StmtList extends Node {
 			LexicalType.DO
 			);
 
-
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
@@ -30,8 +29,6 @@ public class StmtList extends Node {
 
 		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
-
-
 
 	public boolean parse() throws Exception{
 

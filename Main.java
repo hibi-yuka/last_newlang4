@@ -16,7 +16,7 @@ public class Main {
 	        lex = new LexicalAnalyzerImpl("test.bas");
 	        env = new Environment(lex);
 
-	        first = lex.get();
+	        first = lex.get();//ここでエラー
 	        lex.unget(first);//今読んだものが読める
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する

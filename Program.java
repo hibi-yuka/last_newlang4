@@ -21,7 +21,6 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.DO
 			);
 
-	
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
 		return fristSet.contains(lu.getType()); //SetがgetTypeと比較し、要素を保持していたらtrueを返す
 	}
@@ -44,6 +43,11 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			return handler.parse();
 		}
 		return false;
+	}
+
+	public String toString() {
+
+		return "頑張れ俺、ちゃんとできる";
 	}
 
 }

@@ -1,5 +1,10 @@
 package newlang4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PushbackReader;
+
 public class Main {
 
 	/**
@@ -11,9 +16,21 @@ public class Main {
 	        LexicalUnit		first;
 	        Environment		env;
 
-	        System.out.println("basic parser");
+	        System.out.println("basic parser");//この文字列を持っているの
 
-	        lex = new LexicalAnalyzerImpl("test.bas");
+
+	        String path = "C:\\Users\\c0117312\\Desktop\\t.txt";
+			File file = new File(path);
+			FileReader fr = null;
+			try {
+				fr = new FileReader(file);
+			} catch (FileNotFoundException e) {
+
+				e.printStackTrace();
+			}
+			PushbackReader pr = new PushbackReader(fr);
+
+	        lex = new LexicalAnalyzerImpl(pr);
 	        env = new Environment(lex);
 
 	        first = lex.get();//ここでエラー

@@ -60,9 +60,9 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 
 	}
 
-	public LexicalAnalyzerImpl(String string) {
-		// TODO 自動生成されたコンストラクター・スタブ
-	}
+	//public LexicalAnalyzerImpl(String string) {
+	// TODO 自動生成されたコンストラクター・スタブ
+	//}
 
 	@Override
 	public LexicalUnit get() throws Exception {

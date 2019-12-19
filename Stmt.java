@@ -6,6 +6,7 @@ import java.util.Set;
 public class Stmt extends Node {
 
 	Environment env;
+	Node handler;
 
 	public Stmt(Environment env) {
 		this.env = env;
@@ -30,13 +31,13 @@ public class Stmt extends Node {
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		//env.getInput().unget(first);
 		if(End.isFirst(first)) { //次の判定を開始する
-			Node handler = End.getHandler(first ,env);//
+			handler = End.getHandler(first ,env);//
 			return handler.parse();
 		}
 		return false;
 	}
 	public String toString() {
 
-		return "Stmt" + handler.toString();
+		return "Stmt" + handler.toString() ;
 	}
 }

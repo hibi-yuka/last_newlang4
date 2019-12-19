@@ -33,27 +33,20 @@ public class StmtList extends Node {
 		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
 
-
-
-
 	public boolean parse() throws Exception{
 
-	LexicalUnit first = env.getInput().get();
-	env.getInput().unget(first);
-	System.out.println(first);
 		//ここでツリーを作る
 	while(true) { //stmtである限り繰り返す
+		LexicalUnit first = env.getInput().get();
+		env.getInput().unget(first);
+		//System.out.println(first);
 	    if(Stmt.isFirst(first)) {
 			handler = Stmt.getHandler(first , env);
 			handler.parse();
 			handlerlist.add(handler);
-	    } else {
+	    }
 	    	return true;//IOF、ELSEなどが来た時に抜ける
-			}
-	    first = env.getInput().get();
-	    break;
-	}
-	return false;
+	    }
 	}
 
 

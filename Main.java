@@ -35,6 +35,7 @@ public class Main {
 	        first = lex.get();//
 	        lex.unget(first);//今読んだものが読める
 
+
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 	        	Node handler = Program.getHandler(first, env);//最初の字句と,envを渡す
 	        	//envにはLexicalAnalyzerがあるのでそこからgetする。

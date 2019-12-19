@@ -21,7 +21,6 @@ public class Stmt extends Node {
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-
 	public static Stmt getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
 		return new Stmt(env);//StmtListクラスをインスタンス化する
 	}
@@ -29,12 +28,11 @@ public class Stmt extends Node {
 	public boolean parse() throws Exception{
 
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		env.getInput().unget(first);
+		//env.getInput().unget(first);
 		if(End.isFirst(first)) { //次の判定を開始する
-			Node handler = End.getHandler(first,env);//
+			Node handler = End.getHandler(first ,env);//
 			return handler.parse();
 		}
 		return false;
 	}
-
 }

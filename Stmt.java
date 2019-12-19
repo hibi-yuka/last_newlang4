@@ -5,13 +5,16 @@ import java.util.Set;
 
 public class Stmt extends Node {
 
+	Environment env;
+
+	public Stmt(Environment env) {
+		this.env = env;
+	}
+
 	static final Set<LexicalType> fristSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
-			LexicalType.END,
-			LexicalType.IF,
-			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.END
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
@@ -20,7 +23,7 @@ public class Stmt extends Node {
 
 
 	public static Stmt getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new Stmt();//StmtListクラスをインスタンス化する
+		return new Stmt(env);//StmtListクラスをインスタンス化する
 	}
 
 	public boolean parse() throws Exception{
@@ -31,17 +34,15 @@ public class Stmt extends Node {
 		if(If_prefix.isFirst(first)) {
 			Node handler = If_prefix.getHandler(first , env);
 			handler.parse();
-		}else if(WHILE.isFirst(first)) {
-			Node handler = WHILE.getHandler(first , env);
-			handler.parse();
-		}else if(DO.isFirst(first)) {
-			Node handler = DO.getHandler(first , env);
-			handler.parse();
+		}else if(Subst.isFirst(first)) {
+			Node handler = Subst.getHandler(first , env);
+			return handler.parse();
+		}else if(Call_sub.isFirst(first)) {
+			Node handler = Call_sub.getHandler(first , env);
+			return handler.parse();
 		}
-			break;//
+			break;
 		}
-		return false;
-
+			return false;
 	}
-
 }

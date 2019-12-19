@@ -1,7 +1,5 @@
 package newlang4;
 
-
-
 public class Main {
 
 	/**
@@ -18,10 +16,10 @@ public class Main {
 	        lex = new LexicalAnalyzerImpl("test.bas");
 	        env = new Environment(lex);
 
-	        first = lex.get();//
+	        first = lex.get();
 	        lex.unget(first);//今読んだものが読める
 
-	        if (Program.isFirst(first)) {//プログラムというfirst集合に入っているか判定する
+	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 	        	Node handler = Program.getHandler(first, env);//最初の字句と,envを渡す
 	        	//envにはLexicalAnalyzerがあるのでそこからgetする。
 	        	//先にオブジェクトを作る

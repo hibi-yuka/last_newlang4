@@ -5,6 +5,11 @@ import java.util.Set;
 
 public class StmtList extends Node {
 
+	Environment env;
+
+	public StmtList(Environment env) {
+		this.env = env;
+	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
 			LexicalType.NAME,
@@ -22,8 +27,11 @@ public class StmtList extends Node {
 
 
 	public static StmtList getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new StmtList();//StmtListクラスをインスタンス化する
+
+		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
+
+
 
 	public boolean parse() throws Exception{
 
@@ -32,18 +40,16 @@ public class StmtList extends Node {
 		while(true) {
 		if(Stmt.isFirst(first)) {
 			Node handler = Stmt.getHandler(first , env);
-			handler.parse();
+			return handler.parse();
 		}else if(Block.isFirst(first)) {
 			Node handler = StmtList.getHandler(first , env);
-			handler.parse();
+			return handler.parse();
 		}else {
 			break;//
-
 		}
-		return false;
-
 	}
-
-
-
+	return false;
+	}
 }
+
+

@@ -3,13 +3,13 @@ package newlang4;
 import java.util.EnumSet;
 import java.util.Set;
 
-public class If_prefix extends Node{
+public class Leftvar {
+
 
 
 	//Set<E> E - このセットで保持される要素の型
 		static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
-
-				LexicalType.IF
+				LexicalType.NAME
 				);
 
 
@@ -24,11 +24,13 @@ public class If_prefix extends Node{
 
 		public boolean parse() throws Exception{ //三つ目のメソッド
 
-
+			//ここの処理が不明
 			return false;
 		}
 
 	}
+
+
 
 
 

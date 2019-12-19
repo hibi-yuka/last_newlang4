@@ -8,9 +8,7 @@ public class Var extends Node{
 	//Set<E> E - このセットで保持される要素の型
 		static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
 				LexicalType.NAME
-
 				);
-
 
 		public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
 			return fristSet.contains(lu.getType()); //Setが指定された要素を保持している場合にtrue
@@ -22,15 +20,9 @@ public class Var extends Node{
 		}
 
 		public boolean parse() throws Exception{ //三つ目のメソッド
-
-			if(StmtList.isFirst(first)) {
-				Node handler = StmtList.getHandler(first,env);//
-				handler.parse();
-			}
-			return true;
+			//一番最後のNode
+			return false;
 		}
-
-	}
-
-
 }
+
+

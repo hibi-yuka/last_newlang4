@@ -12,6 +12,7 @@ public class Expr_list extends Node{
 				LexicalType.SUB,
 				LexicalType.RP,
 				LexicalType.NAME,
+				LexicalType.LITERAL
 				);
 
 
@@ -19,21 +20,19 @@ public class Expr_list extends Node{
 			return fristSet.contains(lu.getType()); //Setが指定された要素を保持している場合にtrue
 		}
 
-
 		public static Node getHandler(LexicalUnit first, Environment env) { //二つ目のメソッドここでは引数が二つ渡されている。最初に読み込んだ
 			return null;
 		}
 
 		public boolean parse() throws Exception{ //三つ目のメソッド
 
-			if(StmtList.isFirst(first)) {
-				Node handler = StmtList.getHandler(first,env);//
+			if(Expr.isFirst(first)) {
+				Node handler = Expr.getHandler(first,env);//
 				handler.parse();
 			}
-			return true;
+			return false;
 		}
 
 	}
 
 
-}

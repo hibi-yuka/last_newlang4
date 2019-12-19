@@ -22,14 +22,11 @@ public class Var_list extends Node{
 
 		public boolean parse() throws Exception{ //三つ目のメソッド
 
-			if(StmtList.isFirst(first)) {
-				Node handler = StmtList.getHandler(first,env);//
-				handler.parse();
-			}
+
 			return true;
 		}
 
 	}
 
 
-}
+

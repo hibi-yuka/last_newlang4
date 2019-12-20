@@ -34,12 +34,15 @@ public class StmtList extends Node {
 	}
 
 	public boolean parse() throws Exception{
-
 		//ここでツリーを作る
 	while(true) { //stmtである限り繰り返す
 		LexicalUnit first = env.getInput().get();
+
+	if(first.getType() == LexicalType.NL) {
+		  continue; //処理を抜けて再び上に戻る
+	}else {
 		env.getInput().unget(first);
-		//System.out.println(first);
+	}
 	    if(Stmt.isFirst(first)) {
 			handler = Stmt.getHandler(first , env);
 			handler.parse();
@@ -49,9 +52,8 @@ public class StmtList extends Node {
 	    }
 	}
 
-
 	public String toString() {
-		return "Stmt_List" + "" +  handlerlist.toString();
+		return  handlerlist.toString();
 	}
 }
 

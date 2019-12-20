@@ -63,10 +63,10 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 	}
 
 	@Override
-	public LexicalUnit get() throws Exception {//次を読むか、ungetを読むか
+	public LexicalUnit get() throws Exception {
 
 		if(!list.isEmpty()) {
-			LexicalUnit List_UNIT = list.get(list.size()-1);
+			LexicalUnit List_UNIT = list.get(list.size()-1); //次を読むか、ungetを読むか
 			list.remove(list.size()-1);
 			return List_UNIT;
 		}

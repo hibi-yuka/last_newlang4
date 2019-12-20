@@ -43,17 +43,27 @@ public class StmtList extends Node {
 	}else {
 		env.getInput().unget(first);
 	}
-	    if(Stmt.isFirst(first)) {
+	System.out.println(first);
+
+	if(Stmt.isFirst(first)) { //
 			handler = Stmt.getHandler(first , env);
+			System.out.println("Stmt"+first);
 			handler.parse();
 			handlerlist.add(handler);
-	    }
+	    }else if(Block.isFirst(first)) {
+	    	handler = Block.getHandler(first, env);
+	    	System.out.println("Block1"+first);
+	    	 handler.parse();
+	    	 handlerlist.add(handler);
+	}
 	    	return true;//IOF、ELSEなどが来た時に抜ける
-	    }
+	}
+
 	}
 
 	public String toString() {
-		return  handlerlist.toString();
+
+		return  "StmtList" + handlerlist.toString();
 	}
 }
 

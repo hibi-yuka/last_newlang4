@@ -42,7 +42,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 
 		env.getInput().unget(first);//ungetして配列として保管する
-
+		System.out.println(first);
 
 		if(StmtList.isFirst(first) ) { //次の判定を開始する
 			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない

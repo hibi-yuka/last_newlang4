@@ -61,9 +61,10 @@ public class StmtList extends Node {
 			break;
 			}
 		}
-		return true;
+		return true;//Programの
 	}
 
+//バグを抱えている。のちのち被害を受けるのでその時にどうにかしよう。今は完成させるのを目的とする
 	public String toString() {
 		return   "Pro" + handler.toString();
 	}

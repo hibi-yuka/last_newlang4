@@ -34,14 +34,19 @@ public class Subst extends Node{
 			handler = Const.getHandler(first ,env);//
 			System.out.println(first + " :const");//出力テスト
 			handler.parse();
-		}
+		}//
+
+		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
 		if(first.getType() == LexicalType.EQ) {
 			System.out.println(first + " :EQ");
 		}
 
+		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+		env.getInput().unget(first);
 
-		if(Expr.isFirst(first)) {
+
+		if(Expr.isFirst(first)) { //えくすぺあー
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :expr");//出力テスト
 			handler.parse();

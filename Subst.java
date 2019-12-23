@@ -10,6 +10,7 @@ public class Subst extends Node{
 
 	public Subst(Environment env) {
 		this.env = env;
+		type = NodeType.ASSIGN_STMT;
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
@@ -28,7 +29,6 @@ public class Subst extends Node{
 
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
-		
 
 		if(first.getType() == LexicalType.NAME) {
 			System.out.println(first + " :Subst");
@@ -43,3 +43,5 @@ public class Subst extends Node{
 
 	}
 }
+//const int リテラル　doubleなどをvalue型で保存する。入れるノードを作る。本当は違うが、syntaxとして動かすだけなら
+//Nameも保存する出来る様にする　

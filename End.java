@@ -29,7 +29,7 @@ public class End extends Node{
 		LexicalUnit first = env.getInput().get();
 
 		if(End.isFirst(first)) {
-			System.out.println(first + " : End");
+			System.out.println(first + " : finalEnd");
 			return true;
 			}
 		return false;

@@ -26,6 +26,7 @@ public class Main {
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
+
 			PushbackReader pr = new PushbackReader(fr);
 	        lex = new LexicalAnalyzerImpl(pr); //読み込まれた値や文字がlexへ渡されていく,lexにはLexicalType.○○と字句が渡されてる
 

@@ -37,7 +37,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 		Reservation.put("LOOP", new LexicalUnit(LexicalType.LOOP));
 		Reservation.put("TO", new LexicalUnit(LexicalType.TO));
 		Reservation.put("WEND", new LexicalUnit(LexicalType.WEND));
-		Reservation.put("EOF", new LexicalUnit(LexicalType.EOF));
+	//	Reservation.put("EOF", new LexicalUnit(LexicalType.EOF));
 		operator.put("=", new LexicalUnit(LexicalType.EQ));
 		operator.put("<", new LexicalUnit(LexicalType.LT));
 		operator.put(">", new LexicalUnit(LexicalType.GT));
@@ -77,7 +77,7 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 			inword = word.read();
 			first = (char) inword + "";
 		}
-		if (inword == -1) {
+		if (inword == (char)-1) {
 			return new LexicalUnit(LexicalType.EOF);
 		} else if (first.matches("[a-zA-Z]")) {
 			return getName(first);

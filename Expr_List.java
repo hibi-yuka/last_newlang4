@@ -60,6 +60,7 @@ public class Expr_List extends Node{
 				handler = Expr.getHandler(first ,env);//
 				System.out.println(first + " :expr.Expr");//出力テスト
 				handler.parse();
+				handlerlist.add(handler);
 			}
 		}
 		return true;

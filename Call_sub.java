@@ -37,7 +37,7 @@ public class Call_sub extends Node{
 	first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 	env.getInput().unget(first);
 
-	if(Expr_List.isFirst(first)) { //えくすぺあー
+	if(Expr_List.isFirst(first)) { //イーエックスピーアール―
 		handler = Expr_List.getHandler(first ,env);//
 		System.out.println(first + " :expr_list");//出力テスト
 		handler.parse();

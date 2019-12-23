@@ -45,16 +45,21 @@ public class Expr_List extends Node{
 			System.out.println(first + " :COMMA");
 		}
 
-		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+		first = env.getInput().get();
 		env.getInput().unget(first);
 
-		if(Expr.isFirst(first)) { //ィ―エックスぴーあーる―
+		if(Expr.isFirst(first)) { //イーエックスピーアール―
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :expr.Expr");//出力テスト
 			handler.parse();
 		}
 		return true;
 	}
-}
 
+
+		public String toString() {
+
+			return "Expr_List";
+		}
+}
 //

@@ -16,8 +16,7 @@ public class Main {
 	        LexicalUnit		first;
 	        Environment		env;
 
-	        System.out.println("basic parser");//この文字列を持っているの
-
+	        System.out.println("basic parser");//解析開始
 
 	        String path = "C:\\Users\\c0117312\\Desktop\\t.txt";
 			File file = new File(path);
@@ -28,23 +27,29 @@ public class Main {
 				e.printStackTrace();
 			}
 			PushbackReader pr = new PushbackReader(fr);
+	        lex = new LexicalAnalyzerImpl(pr); //読み込まれた値や文字がlexへ渡されていく,lexにはLexicalType.○○と字句が渡されてる
 
-	        lex = new LexicalAnalyzerImpl(pr);
-	        env = new Environment(lex);
+	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
 
-	        first = lex.get();//
-	        lex.unget(first);//今読んだものが読める
+	        first = lex.get();//LexicalAnalayzerで読み込んで出力される形をfirstへ
+	        lex.unget(first);//LexicalUnit型の変数が渡されている
 
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
-	        	Node handler = Program.getHandler(first, env);//最初の字句と,envを渡す
-	        	//envにはLexicalAnalyzerがあるのでそこからgetする。
-	        	//先にオブジェクトを作る
-	        	handler.parse();//それに向かってparseへ
-	        	//作ったオブジェクト利用する
+
+	        	Node handler = Program.getHandler(first, env);//最初の字句とその型、読み込んだ文字の二つを渡す。envにはLexicalAnalyzerがあるのでそこからgetする。オブジェクトを作成
+
+	        	handler.parse();//作成したオブジェクトをparseへ
+
 	        	System.out.println(handler); //handler.toStringで出力される
 	        }
-	        else System.out.println("syntax error");//入ってなかったら文法エラーで
+	        else System.out.println("syntax error");//firts集合に該当するものなし＝解析できないのでアウト
 	}
 
 }
+
+//分かっていない事
+//結局engには何が入っている？
+//インスタンスを引数に渡した時に何が渡される？どういう挙動をする？
+//目指すべき出力する形
+//parseの条件

@@ -9,10 +9,11 @@ public class StmtList extends Node {
 
 	Environment env;
 	Node handler;
-	 public List<Node> handlerlist = new ArrayList<Node>();
+	public List<Node> handlerlist = new ArrayList<Node>();
 
-	public StmtList(Environment env) {
+	public StmtList(Environment env) {//コンストラクタ
 		this.env = env;
+		type = NodeType.STMT_LIST;
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
@@ -33,37 +34,36 @@ public class StmtList extends Node {
 		return new StmtList(env);//StmtListクラスをインスタンス化する
 	}
 
-	public boolean parse() throws Exception{
-		//ここでツリーを作る
-	while(true) { //stmtである限り繰り返す
-		LexicalUnit first = env.getInput().get();
+	public boolean parse() throws Exception{//ここでツリーを作る
 
-	if(first.getType() == LexicalType.NL) {
-		  continue; //処理を抜けて再び上に戻る
-	}else {
-		env.getInput().unget(first);
-	}
-	System.out.println(first);
+		while(true) { //stmtである限り繰り返す
+			LexicalUnit first = env.getInput().get();
 
-	if(Stmt.isFirst(first)) { //
-			handler = Stmt.getHandler(first , env);
-			System.out.println("Stmt"+first);
-			handler.parse();
-			handlerlist.add(handler);
-	    }else if(Block.isFirst(first)) {
-	    	handler = Block.getHandler(first, env);
-	    	System.out.println("Block1"+first);
-	    	 handler.parse();
-	    	 handlerlist.add(handler);
-	}
-	    	return true;//IOF、ELSEなどが来た時に抜ける
-	}
+			if(first.getType() == LexicalType.NL) {//NLを読み飛ばす作業
+				continue; //処理を抜けて再び上に戻る
+			}else {
+				env.getInput().unget(first);
+			}
+			System.out.println(first + " :Stmt_list");//出力テスト
 
+			if(Stmt.isFirst(first)) {
+				handler = Stmt.getHandler(first , env);//first集合がstmtだったら
+				System.out.println(first + " :Stmt");//出力テスト
+				handler.parse();
+				handlerlist.add(handler);//ここが分かってない(嘘です殆ど分かってません)
+
+			}else if(Block.isFirst(first)) {
+				handler = Block.getHandler(first, env);
+				System.out.println(first + " :Block1");//出力テスト
+				handler.parse();
+				handlerlist.add(handler);
+			}
+			return false;//IOF、ELSEなどが来た時に抜ける
+		}
 	}
 
 	public String toString() {
-
-		return  "StmtList" + handlerlist.toString();
+		return    handlerlist.toString();
 	}
 }
 

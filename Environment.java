@@ -6,7 +6,7 @@ public class Environment {
 	   LexicalAnalyzer input;
 	   Hashtable var_table;
 
-	    public Environment(LexicalAnalyzer my_input) {//渡されたLexicalAnalyzerクラスの引数をinputへ代入する
+	    public Environment(LexicalAnalyzer my_input) {//正確にはLexicalAnalyzerImplクラスの引数をinputへ代入する
 	        input = my_input;
 	        var_table = new Hashtable();
 	    }

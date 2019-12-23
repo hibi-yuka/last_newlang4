@@ -1,6 +1,6 @@
 package newlang4;
 
-public class Node { //Nodeクラス
+public class Node { //Nodeクラス、ひな形として各メソッドを宣言
     NodeType type; //NodeType型の変数Type
     Environment env; //Enviroment型の変数env
 
@@ -26,7 +26,7 @@ public class Node { //Nodeクラス
         return null;
     }
  
-    public String toString() { //String型のtoStringメソッド
+    public String toString() { //String型のtoStringメソッド 最後に呼ばれ時にENDを出力する
     	if (type == NodeType.END) return "END";
     	else return "Node";        
     }

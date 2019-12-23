@@ -13,30 +13,35 @@ public class End extends Node{
 
 	public End(Environment env){
 		this.env = env;
+		type = NodeType.END;
 	}
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-
 	public static End getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
 		return new End(env);//StmtListクラスをインスタンス化する
 	}
 
-	public boolean parse() throws Exception{//ここでENDかどうか
+	public boolean parse() throws Exception{//ENDではparseどうする？普通ならここでENDなので
 
 		LexicalUnit first = env.getInput().get();
 		env.getInput().unget(first);
 
 		if(End.isFirst(first)) {
+			System.out.println(first + " : End");
 			return true;
 			}
-		System.exit(-1);
 		return false;
 	}
 
 	public String toString() {
-		return "END";
+		if (type == NodeType.END) {
+			return "END";
+		}else{
+				System.out.println(type);
+		return "Node";
+		}
 	}
 }

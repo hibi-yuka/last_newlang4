@@ -10,6 +10,7 @@ public class Stmt extends Node {
 
 	public Stmt(Environment env) {
 		this.env = env;
+		type = NodeType.STMT;
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
@@ -32,13 +33,18 @@ public class Stmt extends Node {
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(End.isFirst(first)) { //次の判定を開始する
+		if(Subst.isFirst(first)) { //次の判定を開始する
+			handler = Subst.getHandler(first ,env);//
+			System.out.println(first + " :subst");//出力テスト
+			return handler.parse();
+		}else if(End.isFirst(first)) {
+			System.out.println(first + " : End");
 			handler = End.getHandler(first ,env);//
 			return handler.parse();
-
 		}
 		return false;
 	}
+
 
 	public String toString() {
 		return  handler.toString() ;

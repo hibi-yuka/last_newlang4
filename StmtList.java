@@ -45,13 +45,13 @@ public class StmtList extends Node {
 				env.getInput().unget(first);
 			}
 
+
 			System.out.println(first + " :Stmt_list");//出力テスト
 
 			if(Stmt.isFirst(first)) {
 				handler = Stmt.getHandler(first , env);//first集合がstmtだったら
 				System.out.println(first + " :Stmt");//出力テスト
 				return 	handler.parse();
-
 
 				//handlerlist.add(handler);//
 			}else if(Block.isFirst(first)) {
@@ -61,9 +61,9 @@ public class StmtList extends Node {
 
 			    //handlerlist.add(handler);
 			}
-			break;
+
 		}
-		return true;
+
 	}
 
 

@@ -30,20 +30,19 @@ public class Const extends Node{
 
 		public boolean parse() throws Exception{//ここでツリーを作る
 
-				LexicalUnit first = env.getInput().get();
-				env.getInput().unget(first);
-
+				LexicalUnit first = env.getInput().get();//LexicalAnalyzerImplの形になる、getすると次の言葉が出てくる,NAMEのa そのままだと読み終わった扱いに、次にget
 				value = first.getValue();
 				System.out.println(first.getValue() + " :Const");//出力テスト
 				return true;
 		}
 
 		public String toString() {
-			return handler.toString();
+			return "Const";
 		}
 	}
 
 //const int literal doubleなどをvalue型で保存する。入れるノードを作る。本当は違うが、syntaxとして動かすだけなら
 //Nameも保存する出来る様にする
-
+//ungetをしない理由、まずprogramでgetするとLexicalUnitの形が保持される、そしてそこでungetして保存する
+//ここでungetしないと最初に保存されなくなり、a = b なら　＝　が次のstmtに渡される、判定できなくね？
 

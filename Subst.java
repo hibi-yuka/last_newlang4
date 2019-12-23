@@ -34,11 +34,14 @@ public class Subst extends Node{
 			handler = Const.getHandler(first ,env);//
 			System.out.println(first + " :subst");//出力テスト
 			return handler.parse();
+
 		}else if(first.getType() == LexicalType.EQ) {
+			System.out.println(first + " :EQ");
 			return true;
+
 		}else if(Expr.isFirst(first)) {
 			handler = Expr.getHandler(first ,env);//
-			System.out.println(first + " :subst");//出力テスト
+			System.out.println(first + " :expr");//出力テスト
 			return handler.parse();
 		}
 		return true;
@@ -47,7 +50,7 @@ public class Subst extends Node{
 
 
 	public String toString() {
-		return "subst" + env.input ;//+ handler.toString();
+		return "sub " + handler.toString();
 
 	}
 }

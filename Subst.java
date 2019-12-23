@@ -34,11 +34,11 @@ public class Subst extends Node{
 			handler = Const.getHandler(first ,env);//
 			System.out.println(first + " :const");//出力テスト
 			handler.parse();
-		}//
+		}
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
-		if(first.getType() == LexicalType.EQ) {
+		if(first.getType() == LexicalType.EQ) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
 			System.out.println(first + " :EQ");
 		}
 

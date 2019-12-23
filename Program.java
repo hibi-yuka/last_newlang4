@@ -48,7 +48,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
 			return handler.parse();//戻り値としてpaaseを返す事で、数珠繋ぎで返す
 		}
-		return false;
+		return false;//Programのis.Firstを弾かれた時点でだめ
 	}
 
 	public String toString() { //handerが出力するのはこれ
@@ -58,4 +58,4 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 
 //型管理をしっかり出来るようにする。
-
+//

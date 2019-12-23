@@ -36,7 +36,7 @@ public class StmtList extends Node {
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 
-		while(true) { //stmtである限り繰り返す
+		while(true) { //stmtである限り繰り返す StmtList以下のNodeのparseはこのループに入って下にいくを繰り返す
 			LexicalUnit first = env.getInput().get();
 
 			if(first.getType() == LexicalType.NL) {//NLを読み飛ばす作業
@@ -61,7 +61,7 @@ public class StmtList extends Node {
 			break;
 			}
 		}
-		return true;//Programの
+		return true;//Programのparseメソッドに結果を返す
 	}
 
 //バグを抱えている。のちのち被害を受けるのでその時にどうにかしよう。今は完成させるのを目的とする

@@ -32,20 +32,24 @@ public class Subst extends Node{
 
 		if(Const.isFirst(first)) { //次の判定を開始する
 			handler = Const.getHandler(first ,env);//
-			System.out.println(first + " :subst");//出力テスト
-			return handler.parse();
+			System.out.println(first + " :const");//出力テスト
+			handler.parse();
+		}
 
-		}else if(first.getType() == LexicalType.EQ) {
+		if(first.getType() == LexicalType.EQ) {
 			System.out.println(first + " :EQ");
-			return true;
+		}
 
-		}else if(Expr.isFirst(first)) {
+
+		if(Expr.isFirst(first)) {
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :expr");//出力テスト
-			return handler.parse();
+			handler.parse();
 		}
 		return true;
 	}
+
+
 
 
 

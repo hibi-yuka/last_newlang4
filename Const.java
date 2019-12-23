@@ -32,7 +32,7 @@ public class Const extends Node{
 
 				LexicalUnit first = env.getInput().get();//LexicalAnalyzerImplの形になる、getすると次の言葉が出てくる,NAMEのa そのままだと読み終わった扱いに、次にget
 				value = first.getValue();
-				System.out.println(first.getValue() + " :Const");//出力テスト
+				System.out.println(first + " :Const");//出力テスト
 				return true;
 		}
 

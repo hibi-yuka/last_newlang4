@@ -30,18 +30,43 @@ public class Subst extends Node{
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(first.getType() == LexicalType.NAME) {
-			System.out.println(first + " :Subst");
+		if(Const.isFirst(first)) { //次の判定を開始する
+			handler = Const.getHandler(first ,env);//
+			System.out.println(first + " :subst");//出力テスト
+			return handler.parse();
+		}else if(first.getType() == LexicalType.EQ) {
 			return true;
-		}else {
-			return false;
+		}else if(Expr.isFirst(first)) {
+			handler = Expr.getHandler(first ,env);//
+			System.out.println(first + " :subst");//出力テスト
+			return handler.parse();
 		}
+		return true;
 	}
+
+
 
 	public String toString() {
 		return "subst" + env.input ;//+ handler.toString();
 
 	}
 }
-//const int リテラル　doubleなどをvalue型で保存する。入れるノードを作る。本当は違うが、syntaxとして動かすだけなら
-//Nameも保存する出来る様にする　
+
+
+//subst = 変数　= expr で構成されている、変数名は保存する必要がある。
+//自分自身が const
+// const をNode型で取っておくだけ
+
+//subst　
+// = は　EQ なんで　読んで
+
+//次は
+
+// pase(){
+//  へんすうめい
+// get const.isFirst
+//
+//  イコール　
+// get = かどうか確認
+//  //expr
+//この処理であるのは直ぐ終わる

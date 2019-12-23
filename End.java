@@ -31,7 +31,7 @@ public class End extends Node{
 		if(End.isFirst(first)) {
 			System.out.println(first + " : finalEnd");
 			return true;
-			}
+		}
 		return false;
 	}
 

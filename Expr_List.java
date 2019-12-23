@@ -29,18 +29,14 @@ public class Expr_List extends Node{
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(Expr.isFirst(first)) { //次の判定を開始する
-			handler = Expr.getHandler(first ,env);//				System.out.println(first + " :const.Expr");//出力テスト
-			handler.parse();
-
-		}else if(first.getType() == LexicalType.COMMA) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
+		if(first.getType() == LexicalType.COMMA) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
 			System.out.println(first + " :COMMA");
 		}
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(Expr.isFirst(first)) { //えくすぺあー
+		if(Expr.isFirst(first)) { //エクペア―
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :expr.Expr");//出力テスト
 			handler.parse();

@@ -44,26 +44,35 @@ public class StmtList extends Node {
 			}else {
 				env.getInput().unget(first);
 			}
+
 			System.out.println(first + " :Stmt_list");//出力テスト
 
 			if(Stmt.isFirst(first)) {
 				handler = Stmt.getHandler(first , env);//first集合がstmtだったら
 				System.out.println(first + " :Stmt");//出力テスト
-				handler.parse();
-				handlerlist.add(handler);//ここが分かってない(嘘です殆ど分かってません)
+				return 	handler.parse();
 
+
+				//handlerlist.add(handler);//
 			}else if(Block.isFirst(first)) {
 				handler = Block.getHandler(first, env);
 				System.out.println(first + " :Block1");//出力テスト
-				handler.parse();
-				handlerlist.add(handler);
+				return 	handler.parse();
+
+			    //handlerlist.add(handler);
 			}
-			return false;//IOF、ELSEなどが来た時に抜ける
+			break;
 		}
+		return true;
 	}
 
+
+//while文、上から実行された時に、if文の結果に関係なく、最後のreturn flaseが実行されている
+//いくらもリストにならない。breakをいれる
+	//処理に困ったらbreak
+
 	public String toString() {
-		return    handlerlist.toString();
+		return    handler.toString();
 	}
 }
 

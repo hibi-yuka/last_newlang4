@@ -45,7 +45,7 @@ public class StmtList extends Node {
 				env.getInput().unget(first);
 			}
 
-
+//nullPはドットの前
 			System.out.println(first + " :Stmt_list");//出力テスト
 
 			if(Stmt.isFirst(first)) {
@@ -62,7 +62,7 @@ public class StmtList extends Node {
 			break;
 			}
 		}
-		return false;
+		return true;
 	}
 
 //while文、上から実行された時に、if文の結果に関係なく、最後のreturn flaseが実行されている

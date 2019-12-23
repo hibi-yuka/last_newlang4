@@ -27,7 +27,6 @@ public class End extends Node{
 	public boolean parse() throws Exception{//ENDではparseどうする？普通ならここでENDなので
 
 		LexicalUnit first = env.getInput().get();
-		env.getInput().unget(first);
 
 		if(End.isFirst(first)) {
 			System.out.println(first + " : End");
@@ -35,6 +34,7 @@ public class End extends Node{
 			}
 		return false;
 	}
+
 
 	public String toString() {
 		if (type == NodeType.END) {
@@ -45,3 +45,4 @@ public class End extends Node{
 		}
 	}
 }
+//Stmt_list処理可能か→true→stmt_list→またend →　stmtに

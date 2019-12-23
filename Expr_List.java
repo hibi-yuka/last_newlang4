@@ -33,33 +33,42 @@ public class Expr_List extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド
 
-		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
-		env.getInput().unget(first);
+		while(true) {
 
-		if(Expr.isFirst(first)) {
-			handler = Const.getHandler(first ,env);//
-			System.out.println(first + " : Expr");//出力テスト
-			handler.parse();
-			handlerlist.add(handler);//
-		}else  if(first.getType() == LexicalType.COMMA) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
-			System.out.println(first + " :COMMA");
-		}
+			LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+			env.getInput().unget(first);
 
-		first = env.getInput().get();
-		env.getInput().unget(first);
+			if(Expr.isFirst(first)) {
+				handler = Const.getHandler(first ,env);//
+				System.out.println(first + " : Expr");//出力テスト
+				handler.parse();
+				handlerlist.add(handler);
+			}
 
-		if(Expr.isFirst(first)) { //イーエックスピーアール―
-			handler = Expr.getHandler(first ,env);//
-			System.out.println(first + " :expr.Expr");//出力テスト
-			handler.parse();
+			first = env.getInput().get();
+
+			if(first.getType() != LexicalType.COMMA) {
+				break;
+			}else{
+				System.out.println(first + " :COMMA");
+			}
+
+			first = env.getInput().get();
+			env.getInput().unget(first);
+
+			if(Expr.isFirst(first)) { //イーエックスピーアール―
+				handler = Expr.getHandler(first ,env);//
+				System.out.println(first + " :expr.Expr");//出力テスト
+				handler.parse();
+			}
 		}
 		return true;
 	}
 
 
-		public String toString() {
+	public String toString() {
 
-			return "Expr_List";
-		}
+		return "Expr_List";
+	}
 }
 //

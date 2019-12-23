@@ -13,6 +13,10 @@ public class Expr_List extends Node{
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
+		LexicalType.INTVAL,
+		LexicalType.DOUBLEVAL,
+		LexicalType.SUB,
+		LexicalType.LP,
 		LexicalType.NAME
 		);
 
@@ -20,8 +24,8 @@ public class Expr_List extends Node{
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-		public static Call_sub getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new Call_sub(env);//StmtListクラスをインスタンス化する
+		public static Expr_List getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
+		return new Expr_List(env);//StmtListクラスをインスタンス化する
 	}
 
 	public boolean parse() throws Exception{ //三つ目のメソッド
@@ -29,7 +33,12 @@ public class Expr_List extends Node{
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(first.getType() == LexicalType.COMMA) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
+
+		if(Expr.isFirst(first)) {
+			handler = Const.getHandler(first ,env);//
+			System.out.println(first + " :const");//出力テスト
+			handler.parse();
+		}else  if(first.getType() == LexicalType.COMMA) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
 			System.out.println(first + " :COMMA");
 		}
 

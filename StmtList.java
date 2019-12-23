@@ -59,18 +59,11 @@ public class StmtList extends Node {
 				handler.parse();
 				handlerlist.add(handler);//listとする
 			}else {
-				break;
+			break;
 			}
 		}
+		return false;
 	}
-
-
-
-
-
-
-
-
 
 //while文、上から実行された時に、if文の結果に関係なく、最後のreturn flaseが実行されている
 //いくらもリストにならない。breakをいれる

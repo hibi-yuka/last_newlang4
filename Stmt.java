@@ -42,7 +42,7 @@ public class Stmt extends Node {
 			handler = End.getHandler(first ,env);//
 			return handler.parse();
 		}
-		return false;
+		return true;
 	}
 
 

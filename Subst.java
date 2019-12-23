@@ -42,11 +42,11 @@ public class Subst extends Node{
 			System.out.println(first + " :EQ");
 		}
 
-		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+		first = env.getInput().get();
 		env.getInput().unget(first);
 
 
-		if(Expr.isFirst(first)) { //えくすぺあー
+		if(Expr.isFirst(first)) { 
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :expr");//出力テスト
 			handler.parse();

@@ -33,7 +33,7 @@ public class Expr_List extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド
 
-		while(true) {
+
 
 			LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 			env.getInput().unget(first);
@@ -45,9 +45,12 @@ public class Expr_List extends Node{
 				handlerlist.add(handler);
 			}
 
+			while(true) {
+
 			first = env.getInput().get();
 
 			if(first.getType() != LexicalType.COMMA) {
+				env.getInput().unget(first);
 				break;
 			}else{
 				System.out.println(first + " :COMMA");

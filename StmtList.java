@@ -51,26 +51,31 @@ public class StmtList extends Node {
 			if(Stmt.isFirst(first)) {
 				handler = Stmt.getHandler(first , env);//first集合がstmtだったら
 				System.out.println(first + " :Stmt");//出力テスト
-				return 	handler.parse();
-
-				//handlerlist.add(handler);//
+				handler.parse();
+				handlerlist.add(handler);//
 			}else if(Block.isFirst(first)) {
 				handler = Block.getHandler(first, env);
 				System.out.println(first + " :Block1");//出力テスト
-				return 	handler.parse();
-
-			    //handlerlist.add(handler);
+				handler.parse();
+				handlerlist.add(handler);//listとする
+			}else {
+				break;
 			}
-
 		}
-
 	}
+
+
+
+
+
+
+
 
 
 //while文、上から実行された時に、if文の結果に関係なく、最後のreturn flaseが実行されている
 //いくらもリストにならない。breakをいれる
 	//処理に困ったらbreak
-
+//54と60でreturnするとだめ
 	public String toString() {
 		return    handler.toString();
 	}

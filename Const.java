@@ -30,14 +30,14 @@ public class Const extends Node{
 
 		public boolean parse() throws Exception{//ここでツリーを作る
 
-				LexicalUnit first = env.getInput().get();//LexicalAnalyzerImplの形になる、getすると次の言葉が出てくる,NAMEのa そのままだと読み終わった扱いに、次にget
-				value = first.getValue();
-				System.out.println(first + " :finalConst");//出力テスト
-				return true;
+			LexicalUnit first = env.getInput().get();//LexicalAnalyzerImplの形になる、getすると次の言葉が出てくる,NAMEのa そのままだと読み終わった扱いに、次にget
+			value = first.getValue();
+			System.out.println(first + " :finalConst");//出力テスト
+			return true;
 		}
 
 		public String toString() {
-			return "Const" + value;
+			return "Const " + value;
 		}
 	}
 

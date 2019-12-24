@@ -40,7 +40,7 @@ public class Expr_List extends Node{
 
 			if(Expr.isFirst(first)) {
 				handler = Const.getHandler(first ,env);//
-				System.out.println(first + " : Expr");//出力テスト
+				System.out.println(first + " : EXpr_List.Expr");//出力テスト
 				handler.parse();
 				handlerlist.add(handler);
 			}
@@ -48,12 +48,13 @@ public class Expr_List extends Node{
 			while(true) {
 
 			first = env.getInput().get();
+			System.out.println(first + " :Expr_List.test");
 
 			if(first.getType() != LexicalType.COMMA) {
 				env.getInput().unget(first);
 				break;
 			}else{
-				System.out.println(first + " :COMMA");
+				System.out.println(first + " :Expr_List.COMMA");
 			}
 
 			first = env.getInput().get();
@@ -61,7 +62,7 @@ public class Expr_List extends Node{
 
 			if(Expr.isFirst(first)) { //イーエックスピーアール―
 				handler = Expr.getHandler(first ,env);//
-				System.out.println(first + " :expr.Expr");//出力テスト
+				System.out.println(first + " :Expr_List.Expr");//出力テスト
 				handler.parse();
 				handlerlist.add(handler);
 			}
@@ -72,7 +73,7 @@ public class Expr_List extends Node{
 
 	public String toString() {
 
-		return "Expr_List";
+		return "Expr_List ";
 	}
 }
 //

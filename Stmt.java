@@ -29,24 +29,37 @@ public class Stmt extends Node {
 	}
 
 	public boolean parse() throws Exception{
+		
 
-		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
+		LexicalUnit first = env.getInput().get();
 		env.getInput().unget(first);
+		System.out.println(first + " :Stmt_test");
+		//print = 1 は subst  になり print 1,print "hello" などはcall_sub = をungetする  一文字目は読み込み、だめなら
+		//const なら =が存在する
+
+		if(first.getType() == LexicalType.EQ) { //次が=ならSubst、そうでないなCallsubになる
+			handler = Subst.getHandler(first ,env);//
+			System.out.println(first + " :Stmt.subst");//出力テスト
+			 handler.parse();
+		}else {
+			handler = Call_sub.getHandler(first ,env);//
+			System.out.println(first + " :Stmt.Call_sub");//出力テスト
+			 handler.parse();
+		}
 
 		if(Subst.isFirst(first)) { //次の判定を開始する
 			handler = Subst.getHandler(first ,env);//
-			System.out.println(first + " :subst");//出力テスト
+			System.out.println(first + " :Stmt.subst");//出力テスト
 			return handler.parse();
 		}else if(End.isFirst(first)) {
-			System.out.println(first + " : End");
+			System.out.println(first + " : Stmt.End");
 			handler = End.getHandler(first ,env);//
 			return handler.parse();
 		}
 		return true;
 	}
 
-
 	public String toString() {
-		return  "stmt" + handler.toString() ;
+		return  "stmt " + handler.toString() ;
 	}
 }

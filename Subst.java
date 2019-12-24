@@ -30,33 +30,28 @@ public class Subst extends Node{
 		LexicalUnit first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 		env.getInput().unget(first);
 
-		if(Const.isFirst(first)) { //次の判定を開始する
+		if(Const.isFirst(first)) { //変数名を見る
 			handler = Const.getHandler(first ,env);//
-			System.out.println(first + " :const");//出力テスト
+			System.out.println(first + " :Subst.const");//出力テスト
 			handler.parse();
 		}
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
 		if(first.getType() == LexicalType.EQ) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
-			System.out.println(first + " :EQ");
+			System.out.println(first + " :EQ");// = であるか見る
 		}
 
 		first = env.getInput().get();
 		env.getInput().unget(first);
 
-
-		if(Expr.isFirst(first)) { 
+		if(Expr.isFirst(first)) { //式かを判断する
 			handler = Expr.getHandler(first ,env);//
-			System.out.println(first + " :expr");//出力テスト
+			System.out.println(first + " :Subst.expr");//出力テスト
 			handler.parse();
 		}
 		return true;
 	}
-
-
-
-
 
 	public String toString() {
 		return "sub " + handler.toString();
@@ -64,7 +59,10 @@ public class Subst extends Node{
 	}
 }
 
-
+//public value getValue() throew Exception{
+//vakue va1 = handler.getValue();
+// handler.setValue(va1);
+// return val;
 //subst = 変数　= expr で構成されている、変数名は保存する必要がある。
 //自分自身が const
 // const をNode型で取っておくだけ

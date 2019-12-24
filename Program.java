@@ -42,20 +42,17 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 		env.getInput().unget(first);//ungetして読み込んだのを保持する。
 
-		System.out.println(first + " :Program");//一番最初に読み込んだfirstを出力する。テスト
-
-		if(StmtList.isFirst(first) ) { //次の判定を開始する
+		if(StmtList.isFirst(first)) { //次の判定を開始する
 			handler = StmtList.getHandler(first,env);//スコープについて、ここでNode handlerとするとhandler内部の値はif文{}までしかローカル変数によって保持されない
-			return handler.parse();//戻り値としてpaaseを返す事で、数珠繋ぎで返す
+			System.out.println(first + " :Program.StmtList");//一番最初に読み込んだfirstを出力する。テスト
+			return handler.parse();//戻り値としてpaaseの結果を返す事で、数珠繋ぎで返す
 		}
 		return false;//Programのis.Firstを弾かれた時点でだめ
 	}
 
 	public String toString() { //handerが出力するのはこれ
-		return   handler.toString() ;
+		return   "Program " + handler.toString() ;
 	}
 }
-
-
 //型管理をしっかり出来るようにする。
 //

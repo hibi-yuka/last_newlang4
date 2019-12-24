@@ -47,14 +47,14 @@ public class StmtList extends Node {
 
 			System.out.println(first + " :Stmt_list");//出力テスト
 
-			if(Stmt.isFirst(first)) {
-				handler = Stmt.getHandler(first , env);//first集合がstmtだったら
-				System.out.println(first + " :Stmt");//出力テスト
-				handler.parse();
-				handlerlist.add(handler);//
-			}else if(Block.isFirst(first)) {
-				handler = Block.getHandler(first, env);
-				System.out.println(first + " :Block1");//出力テスト
+			if(Stmt.isFirst(first)) {//first集合がStmtと一致するならtrueで中の操作	
+				handler = Stmt.getHandler(first , env);//インスタンスを生成する
+				System.out.println(first + " :StmtList.Stmt");//出力テスト
+				handler.parse();//インスタンス.メソッドでStmt.parseを実行
+				handlerlist.add(handler);//何故や？
+			}else if(Block.isFirst(first)) {//Blockと一致するならこっちの処理
+				handler = Block.getHandler(first, env);//インスタンス生成
+				System.out.println(first + " :StmtList.Block1");//出力テスト
 				handler.parse();
 				handlerlist.add(handler);//listとする
 			}else {
@@ -66,7 +66,7 @@ public class StmtList extends Node {
 
 //バグを抱えている。のちのち被害を受けるのでその時にどうにかしよう。今は完成させるのを目的とする
 	public String toString() {
-		return   "Pro" + handler.toString();
+		return   "StmtList " + handler.toString();
 	}
 }
 

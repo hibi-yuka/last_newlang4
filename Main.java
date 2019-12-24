@@ -47,7 +47,8 @@ public class Main {
 	        else System.out.println("syntax error");//firts集合に該当するものなし＝解析できないのでアウト
 	}
 }
-
+//call_subに到達してない
+//print = 1 は　const print 1,print "hello" などはcall_sub = をungetする
 //メモ
 //一旦何がどこに入っているのかは考えずに、どの型がどこに渡されているのかを考える。中身は考えない
 //分かっていない事

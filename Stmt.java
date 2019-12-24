@@ -29,22 +29,31 @@ public class Stmt extends Node {
 	}
 
 	public boolean parse() throws Exception{
-		
 
-		LexicalUnit first = env.getInput().get();
+
+		LexicalUnit first = env.getInput().get();//ここで読み込まれるのはfirst集合
 		env.getInput().unget(first);
 		System.out.println(first + " :Stmt_test");
 		//print = 1 は subst  になり print 1,print "hello" などはcall_sub = をungetする  一文字目は読み込み、だめなら
 		//const なら =が存在する
 
-		if(first.getType() == LexicalType.EQ) { //次が=ならSubst、そうでないなCallsubになる
+		if(Const.isFirst(first)) {
+			handler = Const.getHandler(first, env);
+			System.out.println(first + " :Stmt.subst");//出力テスト
+			handler.parse();
+		}
+
+		first = env.getInput().get();
+
+		if(first.getType() == LexicalType.EQ) { //次が=ならSubst、そうでないならCallsubになる
 			handler = Subst.getHandler(first ,env);//
 			System.out.println(first + " :Stmt.subst");//出力テスト
 			 handler.parse();
 		}else {
+			env.getInput().unget(first);
 			handler = Call_sub.getHandler(first ,env);//
 			System.out.println(first + " :Stmt.Call_sub");//出力テスト
-			 handler.parse();
+			handler.parse();
 		}
 
 		if(Subst.isFirst(first)) { //次の判定を開始する

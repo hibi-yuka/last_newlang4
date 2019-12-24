@@ -16,8 +16,7 @@ public class Stmt extends Node {
 	static final Set<LexicalType> fristSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
-			LexicalType.END,
-			LexicalType.NL
+			LexicalType.END
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
@@ -37,8 +36,8 @@ public class Stmt extends Node {
 		//print = 1 は subst  になり print 1,print "hello" などはcall_sub = をungetする  一文字目は読み込み、だめなら
 		//const なら =が存在する
 
-		if(Const.isFirst(first)) {
-			handler = Const.getHandler(first, env);
+		if(Subst.isFirst(first)) {
+			handler = Subst.getHandler(first, env);
 			System.out.println(first + " :Stmt.subst");//出力テスト
 			handler.parse();
 		}
@@ -46,9 +45,7 @@ public class Stmt extends Node {
 		first = env.getInput().get();
 
 		if(first.getType() == LexicalType.EQ) { //次が=ならSubst、そうでないならCallsubになる
-			handler = Subst.getHandler(first ,env);//
-			System.out.println(first + " :Stmt.subst");//出力テスト
-			 handler.parse();
+			System.out.println(first + " :EQ");// = であるか見る
 		}else {
 			env.getInput().unget(first);
 			handler = Call_sub.getHandler(first ,env);//
@@ -56,11 +53,7 @@ public class Stmt extends Node {
 			handler.parse();
 		}
 
-		if(Subst.isFirst(first)) { //次の判定を開始する
-			handler = Subst.getHandler(first ,env);//
-			System.out.println(first + " :Stmt.subst");//出力テスト
-			return handler.parse();
-		}else if(End.isFirst(first)) {
+		if(End.isFirst(first)) {
 			System.out.println(first + " : Stmt.End");
 			handler = End.getHandler(first ,env);//
 			return handler.parse();

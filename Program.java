@@ -31,7 +31,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //二つ目のメソッド
 
-		if(StmtList.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(Program.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
 			return new Program(first,env);
 		}
 		throw new Exception("StmtListにないfirst集合です");//first集合でない時

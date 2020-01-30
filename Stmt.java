@@ -25,9 +25,9 @@ public class Stmt extends Node {
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-	public static Stmt getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
 
-		if(End.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(Stmt.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
 			return new Stmt(first,env);
 		}
 		throw new Exception("EndNodeにないfrst集合です");//first集合でない時

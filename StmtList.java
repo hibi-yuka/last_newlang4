@@ -31,9 +31,9 @@ public class StmtList extends Node {
 		return fristSet.contains(lu.getType());
 	}
 
-	public static StmtList getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
 
-		if(Stmt.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(StmtList.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
 			return new StmtList(first,env);
 		}
 		throw new Exception("Stmtにないfrst集合です");//first集合でない時

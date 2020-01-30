@@ -7,11 +7,11 @@ import java.util.Set;
 
 public class StmtList extends Node {
 
-	Environment env;
+	LexicalUnit lex;
 	public List<Node> handlerlist = new ArrayList<Node>();
 
-	public StmtList(Environment env) {//コンストラクタ
-		this.env = env;
+	public StmtList(LexicalUnit first) {//コンストラクタ
+		this.lex = first;
 		type = NodeType.STMT_LIST;
 	}
 
@@ -30,8 +30,9 @@ public class StmtList extends Node {
 	}
 
 	public static StmtList getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new StmtList(env);//StmtListクラスをインスタンス化する
+		return new StmtList(first);//StmtListクラスをインスタンス化する
 	}
+
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 		Node handler;
@@ -69,7 +70,7 @@ public class StmtList extends Node {
 		String str = "[";
 		boolean f = true;
 		for(Node child : handlerlist) { //拡張for文 handlerlistに含まれる内容をchildへ代入
-			if (f) f = false; 
+			if (f) f = false;
 			else str += ",";
 			str += child.toString();//childの内容を出力
 		}

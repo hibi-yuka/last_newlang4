@@ -34,16 +34,15 @@ public class Main {
 
 	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
 
-	        first = lex.get();//LexicalAnalayzerで読み込んで出力される形をfirstへ
-	        lex.unget(first);//firstに入っている文字をlexにlistとして保存する
+	        first = lex.get();
+	        lex.unget(first);
+
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 
-	        	Node handler = Program.getHandler(first, env);//最初の字句とその型、読み込んだ文字の二つを渡す。envにはLexicalAnalyzerがあるのでそこからgetする。オブジェクトを作成
-
-	        	handler.parse();//作成したオブジェクトをparseへ
-
-	        	System.out.println(handler); //handler.toStringで出力される
+	        	Node handler = Program.getHandler(first, env);
+	        	handler.parse();
+	        	System.out.println(handler);
 	        }
 	        else System.out.println("syntax error");//firts集合に該当するものなし＝解析できないのでアウト
 	}

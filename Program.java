@@ -9,8 +9,9 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 	Environment env;
 	Node handler ;
 
-	public Program(LexicalUnit first) {//コンストラクタ
+	public Program(LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
+		this.env = env;
 		type = NodeType.PROGRAM;
 	}
 
@@ -31,9 +32,9 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //二つ目のメソッド
 
 		if(StmtList.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
-			return new Program(first);
+			return new Program(first,env);
 		}
-		throw new Exception("StmtListにないエラーです");//first集合でない時
+		throw new Exception("StmtListにないfirst集合です");//first集合でない時
 	}
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
@@ -42,12 +43,12 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			handler = StmtList.getHandler(first,env);
 			handler.parse();
 		}
-		throw new Exception("エラーです");//first集合でない時
+		throw new Exception("Programエラーです");//first集合でない時
 	}
 
 
 	public String toString() { //handerが出力するのはこれ
-		return   "Program " + handler.toString() ;
+		return   handler.toString() ;
 	}
 }
 

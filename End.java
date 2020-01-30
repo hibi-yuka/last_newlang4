@@ -5,36 +5,32 @@ import java.util.Set;
 
 public class End extends Node{
 
+	LexicalUnit first;
 	Environment env;
+	Node handler ;
 
-	static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
-			LexicalType.END
-			);
-
-	public End(Environment env){
+	public End(LexicalUnit first,Environment env){
+		this.first = first;
 		this.env = env;
 		type = NodeType.END;
 	}
+
+	static final Set<LexicalType> fristSet =  EnumSet.of(
+			LexicalType.END
+			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
 	public static End getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new End(env);//StmtListクラスをインスタンス化する
+		return new End(first,env);//StmtListクラスをインスタンス化する
 	}
 
 	public boolean parse() throws Exception{//ENDではparseどうする？普通ならここでENDなので
-
-		LexicalUnit first = env.getInput().get();
-
-		if(End.isFirst(first)) {
-			System.out.println(first + " : finalEnd");
-			return true;
-		}
-		return false;
+		//一番下なしは多くの場合は内容を保存,ENDだけは例外
+		return true;
 	}
-
 
 	public String toString() {
 		if (type == NodeType.END) {

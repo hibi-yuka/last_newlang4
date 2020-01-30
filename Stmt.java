@@ -5,10 +5,12 @@ import java.util.Set;
 
 public class Stmt extends Node {
 
+	LexicalUnit first;
 	Environment env;
-	Node handler;
+	Node handler ;
 
-	public Stmt(Environment env) {
+	public Stmt(LexicalUnit first,Environment env) {
+		this.first = first;
 		this.env = env;
 		type = NodeType.STMT;
 	}
@@ -23,45 +25,24 @@ public class Stmt extends Node {
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-	public static Stmt getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
-		return new Stmt(env);//StmtListクラスをインスタンス化する
+	public static Stmt getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
+
+		if(End.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
+			return new Stmt(first,env);
+		}
+		throw new Exception("EndNodeにないfrst集合です");//first集合でない時
 	}
 
 	public boolean parse() throws Exception{
 
-
-		LexicalUnit first = env.getInput().get();//ここで読み込まれるのはfirst集合
-		env.getInput().unget(first);
-		System.out.println(first + " :Stmt_test");
-		//print = 1 は subst  になり print 1,print "hello" などはcall_sub = をungetする  一文字目は読み込み、だめなら
-		//const なら =が存在する
-
-		if(Subst.isFirst(first)) {
-			handler = Subst.getHandler(first, env);
-			System.out.println(first + " :Stmt.subst");//出力テスト
+		if(End.isFirst(first)){ //次の判定を開始する
+			handler = End.getHandler(first,env);
 			handler.parse();
 		}
-
-		first = env.getInput().get();
-
-		if(first.getType() == LexicalType.EQ) { //次が=ならSubst、そうでないならCallsubになる
-			System.out.println(first + " :EQ");// = であるか見る
-		}else {
-			env.getInput().unget(first);
-			handler = Call_sub.getHandler(first ,env);//
-			System.out.println(first + " :Stmt.Call_sub");//出力テスト
-			handler.parse();
-		}
-
-		if(End.isFirst(first)) {
-			System.out.println(first + " : Stmt.End");
-			handler = End.getHandler(first ,env);//
-			return handler.parse();
-		}
-		return true;
+	throw new Exception("Stmtエラーです");//first集合でない時
 	}
 
 	public String toString() {
-		return  "stmt " + handler.toString() ;
+		return  handler.toString() ;
 	}
 }

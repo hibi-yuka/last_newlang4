@@ -20,7 +20,7 @@ public class Main {
 
 	        System.out.println("basic parser");//解析開始
 
-	        String path = "C:\\Users\\c0117312\\Desktop\\t.txt";
+	        String path = "C:\\Users\\c0117312\\Desktop\\text.txt";
 			File file = new File(path);
 			FileReader fr = null;
 			try {
@@ -36,7 +36,6 @@ public class Main {
 
 	        first = lex.get();
 	        lex.unget(first);
-
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 

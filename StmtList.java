@@ -8,7 +8,6 @@ import java.util.Set;
 public class StmtList extends Node {
 
 	Environment env;
-	Node handler;
 	public List<Node> handlerlist = new ArrayList<Node>();
 
 	public StmtList(Environment env) {//コンストラクタ
@@ -35,6 +34,7 @@ public class StmtList extends Node {
 	}
 
 	public boolean parse() throws Exception{//ここでツリーを作る
+		Node handler;
 
 		while(true) { //stmtである限り繰り返す StmtList以下のNodeのparseはこのループに入って下にいくを繰り返す
 			LexicalUnit first = env.getInput().get();
@@ -47,7 +47,7 @@ public class StmtList extends Node {
 
 			System.out.println(first + " :Stmt_list");//出力テスト
 
-			if(Stmt.isFirst(first)) {//first集合がStmtと一致するならtrueで中の操作	
+			if(Stmt.isFirst(first)) {//first集合がStmtと一致するならtrueで中の操作
 				handler = Stmt.getHandler(first , env);//インスタンスを生成する
 				System.out.println(first + " :StmtList.Stmt");//出力テスト
 				handler.parse();//インスタンス.メソッドでStmt.parseを実行
@@ -55,7 +55,7 @@ public class StmtList extends Node {
 			}else if(Block.isFirst(first)) {//Blockと一致するならこっちの処理
 				handler = Block.getHandler(first, env);//インスタンス生成
 				System.out.println(first + " :StmtList.Block1");//出力テスト
-				handler.parse();
+				handler.parse(); //handlerはローカル変数でいい
 				handlerlist.add(handler);//listとする
 			}else {
 			break;
@@ -66,7 +66,17 @@ public class StmtList extends Node {
 
 //バグを抱えている。のちのち被害を受けるのでその時にどうにかしよう。今は完成させるのを目的とする
 	public String toString() {
-		return   "StmtList " + handler.toString();
+		String str = "[";
+		boolean f = true;
+		for(Node child : handlerlist) { //拡張for文 handlerlistに含まれる内容をchildへ代入
+			if (f) f = false; 
+			else str += ",";
+			str += child.toString();//childの内容を出力
+		}
+		str += "]";
+		return str;
+		//return    str + ")" + handler.toString();
+		//return handler.toString();//handler.toStringではない　今の俺のコードでは
 	}
 }
 

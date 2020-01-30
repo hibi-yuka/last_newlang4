@@ -12,9 +12,9 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 
-	        LexicalAnalyzer lex;
-	        LexicalUnit		first;
-	        Environment		env;
+	        LexicalAnalyzer lex;//LexicalAnalyzerクラスのlex
+	        LexicalUnit		first;//LexicalUnitクラスのfirst
+	        Environment		env;//Environmentクラスのenv
 
 	        System.out.println("basic parser");//解析開始
 
@@ -33,8 +33,7 @@ public class Main {
 	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
 
 	        first = lex.get();//LexicalAnalayzerで読み込んで出力される形をfirstへ
-	        lex.unget(first);//LexicalUnit型の変数が渡されている
-
+	        lex.unget(first);//firstに入っている文字をlexにlistとして保存する
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 
@@ -47,6 +46,21 @@ public class Main {
 	        else System.out.println("syntax error");//firts集合に該当するものなし＝解析できないのでアウト
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //call_subに到達してない
 //print = 1 は　const print 1,print "hello" などはcall_sub = をungetする
 //メモ

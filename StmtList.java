@@ -44,6 +44,7 @@ public class StmtList extends Node {
 		if(Stmt.isFirst(first)) { //次の判定を開始する
 			handler = Stmt.getHandler(first,env);
 			handler.parse();
+			return true;
 		}
 		throw new Exception("StmtListエラーです");//first集合でない時
 	}

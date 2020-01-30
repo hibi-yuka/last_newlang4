@@ -38,6 +38,7 @@ public class Stmt extends Node {
 		if(End.isFirst(first)){ //次の判定を開始する
 			handler = End.getHandler(first,env);
 			handler.parse();
+			return true;
 		}
 	throw new Exception("Stmtエラーです");//first集合でない時
 	}

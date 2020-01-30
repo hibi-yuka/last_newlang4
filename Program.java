@@ -5,12 +5,12 @@ import java.util.Set;
 
 public class Program extends Node{ //ここに3つのメソッドを書き加えればいい。Nodeは全てのクラスに必要になる
 
-	LexicalUnit lex;
+	LexicalUnit first;
 	Environment env;
 	Node handler ;
 
 	public Program(LexicalUnit first) {//コンストラクタ
-		this.lex = first;
+		this.first = first;
 		type = NodeType.PROGRAM;
 	}
 
@@ -39,8 +39,8 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
-		if(StmtList.isFirst(lex)) { //次の判定を開始する
-			handler = StmtList.getHandler(lex,env);
+		if(StmtList.isFirst(first)) { //次の判定を開始する
+			handler = StmtList.getHandler(first,env);
 			handler.parse();
 		}
 		throw new Exception("エラーです");//first集合でない時

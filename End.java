@@ -23,7 +23,7 @@ public class End extends Node{
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-	public static End getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
 		return new End(first,env);//StmtListクラスをインスタンス化する
 	}
 

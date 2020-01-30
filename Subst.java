@@ -23,7 +23,7 @@ public class Subst extends Node{
 		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
-	public static Subst getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
 		return new Subst(first,env);//StmtListクラスをインスタンス化する
 	}
 
@@ -37,22 +37,23 @@ public class Subst extends Node{
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
-		if(first.getType() != LexicalType.EQ) {//EQはここで処理をしてしまうので、ungetして次のNodeに渡す必要なし
-			System.out.println("EQではありません");// = であるか見る
+		if(first.getType() != LexicalType.EQ) {//=でないならexitで終了
+			System.out.println("EQではありません");//
 			System.exit(1);
 		}
 
-		first = env.getInput().get();
+		first = env.getInput().get(); //  前のが=だった時、次の文字をgetして読み込む
 
 		if(Expr.isFirst(first)) { //式かを判断する
 			handler = Expr.getHandler(first ,env);//
 			System.out.println(first + " :Subst.expr");//出力テスト
 			handler.parse();
 			return true;
+
 		}
 		System.out.println("解析エラー");
 		System.exit(1);
-		return false;//エラー発生時にexitで抜けるが、
+		return false;//エラー発生時にexitで抜けるが、falseがないとコンパイルで引っかかる
 	}
 
 	public String toString() {

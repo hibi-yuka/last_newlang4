@@ -37,6 +37,7 @@ public class Main {
 	        first = lex.get();
 	        lex.unget(first);
 
+
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 
 	        	Node handler = Program.getHandler(first, env);

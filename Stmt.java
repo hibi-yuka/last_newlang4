@@ -40,6 +40,22 @@ public class Stmt extends Node {
 			handler.parse();
 			return true;
 		}
+
+		LexicalUnit secand = env.getInput().get();//二文字目を読み込むにはenvのinputを経由してgetまでいく
+
+		if(secand.getType() == LexicalType.EQ ) {
+			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
+			Node handler = Subst.getHandler(first , env);
+			handler.parse();
+			return true;
+
+		}else {
+			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
+			Node handler = Call_sub.getHandler(first , env);
+			handler.parse();
+			return true;
+		}
+
 	throw new Exception("Stmtエラーです");//first集合でない時
 	}
 

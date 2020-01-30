@@ -1,28 +1,24 @@
 package newlang4;
 
-import java.util.EnumSet;
-import java.util.Set;
-
-public class Variable extends Node {
-	    String var_name;
+public class VariableNode extends Node {
+	   String var_name;
 	    Value v;
-	    static Set<LexicalType> first = EnumSet.of(LexicalType.NAME);
 
 	    /** Creates a new instance of variable */
-	    public Variable(String name) {
+	    public VariableNode(String name) {
 	        var_name = name;
 	    }
-	    public Variable(LexicalUnit u) {
+	    public VariableNode(LexicalUnit u) {
 	        var_name = u.getValue().getSValue();
 	    }
 
-	    public static boolean isFirst(LexicalUnit funit) {
-	        return first.contains(funit.getType());
+	    public static boolean isMatch(LexicalType first) {
+	        return (first == LexicalType.NAME);
 	    }
 
-	    public static Node getHandler(LexicalUnit funit, Environment my_env) {
-	        if (isFirst(funit)) {
-	        	Variable v;
+	    public static Node getHandler(LexicalType first, Environment my_env) {
+	        if (first == LexicalType.NAME) {
+	        	VariableNode v;
 
 	        	try {
 		        	LexicalUnit lu = my_env.getInput().get();
@@ -51,4 +47,3 @@ public class Variable extends Node {
 	    }
 
 }
-

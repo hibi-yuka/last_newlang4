@@ -32,7 +32,10 @@ public class Expr extends Node{
 	}
 
 	public boolean parse() throws Exception{
-		return false;
+
+		//Constのfirst集合NAME以外があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
+		handler = env.getVariable(first.getValue().get_sValue());//ここに値を保存する firstがNAMEの時
+		return true;
 	}
 
 	public String toString() {

@@ -8,6 +8,7 @@ public class Const extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node handler ;
+	Value v;
 
 	public Const(LexicalUnit first,Environment env) {
 		this.first = first;
@@ -28,13 +29,9 @@ public class Const extends Node{
 
 	public boolean parse() throws Exception{//Constではparseどうする？
 		//一番下なしは多くの場合は内容を保存 どういう処理？
-
-
+		//valueで保存する
+		v = first.getValue();
 		return true;
 	}
-
-
-
-
 
 }

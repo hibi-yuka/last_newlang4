@@ -27,13 +27,10 @@ public class Subst extends Node{
 		return new Subst(first,env);//StmtListクラスをインスタンス化する
 	}
 
-
 	public boolean parse() throws Exception{ //三つ目のメソッド
 
-		if(Variable.isFirst(first)) { //変数名を見る
-			handler = Variable.getHandler(first ,env);//
-			handler.parse();
-		}
+		handler = env.getVariable(first.getValue().get_sValue());
+		handler.parse();
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
@@ -45,8 +42,7 @@ public class Subst extends Node{
 		first = env.getInput().get(); //  前のが=だった時、次の文字をgetして読み込む
 
 		if(Expr.isFirst(first)) { //式かを判断する
-			handler = Expr.getHandler(first ,env);//
-			System.out.println(first + " :Subst.expr");//出力テスト
+			handler = Expr.getHandler(first ,env);
 			handler.parse();
 			return true;
 

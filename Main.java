@@ -1,5 +1,10 @@
 package newlang4;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.PushbackReader;
+
 public class Main {
 
 	/**
@@ -15,9 +20,17 @@ public class Main {
 
 	        System.out.println("basic parser");//解析開始
 
-	        lex = new LexicalAnalyzerImpl("test.bas");
-	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
+	        File file = new File("test.txt");
+			FileReader fr = null;
+			try {
+				fr = new FileReader(file);
+			} catch (FileNotFoundException e) {
 
+				e.printStackTrace();
+			}
+			PushbackReader pr = new PushbackReader(fr);
+			lex = new LexicalAnalyzerImpl(pr);
+	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
 	        first = lex.get();
 	        lex.unget(first);
 

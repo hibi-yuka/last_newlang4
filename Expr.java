@@ -33,6 +33,12 @@ public class Expr extends Node{
 
 	public boolean parse() throws Exception{
 
+		if(Const.isFirst(first)) {
+			handler = Const.getHandler(first, env);
+			handler.parse();
+			return true;
+		}
+
 		//Constのfirst集合NAME以外があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
 		handler = env.getVariable(first.getValue().get_sValue());//ここに値を保存する firstがNAMEの時
 		return true;

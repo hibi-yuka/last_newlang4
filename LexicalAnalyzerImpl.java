@@ -183,6 +183,5 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 	@Override
 	public void unget(LexicalUnit token) throws Exception { //LexicalUnitのみ取ればいいので、文字は読まなかった事にする
 		list.add(token);//読み込んだものをリストとして保存しておく。
-		 //unget.Buffer 読まなかった事にする。LexicalUnitをとっておけばい
 	}
 }

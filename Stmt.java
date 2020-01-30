@@ -48,16 +48,15 @@ public class Stmt extends Node {
 			Node handler = Subst.getHandler(first , env);
 			handler.parse();
 			return true;
-
-		}else {
+		}else{
 			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
-			Node handler = Call_sub.getHandler(first , env);
+			Node handler = Call_Sub.getHandler(first , env);
 			handler.parse();
 			return true;
 		}
-
-	throw new Exception("Stmtエラーです");//first集合でない時
 	}
+	//throw new Exception("Stmtエラーです");//first集合でない時
+
 
 	public String toString() {
 		return  handler.toString() ;

@@ -36,7 +36,7 @@ public class StmtList extends Node {
 		if(StmtList.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
 			return new StmtList(first,env);
 		}
-		throw new Exception("Stmtにないfrst集合です");//first集合でない時
+		throw new Exception("StmtListにないfrst集合です");//first集合でない時
 	}
 
 	public boolean parse() throws Exception{//ここでツリーを作る

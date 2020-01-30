@@ -22,7 +22,6 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.IF,
 			LexicalType.WHILE,
 			LexicalType.DO
-			//LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
@@ -34,7 +33,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 		if(StmtList.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
 			return new Program(first);
 		}
-		throw new Exception("エラーです");//first集合でない時
+		throw new Exception("StmtListにないエラーです");//first集合でない時
 	}
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする

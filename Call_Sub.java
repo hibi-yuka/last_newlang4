@@ -53,7 +53,7 @@ public class Call_Sub extends Node{
 
 
 	public String toString() { //handerが出力するのはこれ
-		return handler2.toString() ;
+		return handler2.toString() ;//関数名の出力も実装
 	}
 }
 

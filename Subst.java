@@ -53,7 +53,7 @@ public class Subst extends Node{
 	}
 
 	public String toString() {
-		return handler.toString();
+		return handler.toString(); //handler2も追加すべし
 
 	}
 }

@@ -50,8 +50,8 @@ public class LexicalAnalyzerImpl implements LexicalAnalyzer {
 		operator.put("-", new LexicalUnit(LexicalType.SUB));
 		operator.put("*", new LexicalUnit(LexicalType.MUL));
 		operator.put("/", new LexicalUnit(LexicalType.DIV));
-		operator.put(")", new LexicalUnit(LexicalType.LP));
-		operator.put("(", new LexicalUnit(LexicalType.RP));
+		operator.put("(", new LexicalUnit(LexicalType.LP));
+		operator.put(")", new LexicalUnit(LexicalType.RP));
 		operator.put(",", new LexicalUnit(LexicalType.COMMA));
 		operator.put("\n", new LexicalUnit(LexicalType.NL));
 		operator.put("\r", new LexicalUnit(LexicalType.NL));

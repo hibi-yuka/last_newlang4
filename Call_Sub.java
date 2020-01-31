@@ -38,8 +38,10 @@ public class Call_Sub extends Node{
 		Function handler = env.getFunction(first.getValue().getSValue());//NAMEを保存
 		//LexicalUnitクラス firstのgetValueよりvalue
 
+		System.out.println(first.getType());
 		first = env.getInput().get();//次を読み込む
 
+		System.out.println(first.getType());
 
 		if(ExprList.isFirst(first)) { //次の判定を開始する
 			handler2 = ExprList.getHandler(first,env);

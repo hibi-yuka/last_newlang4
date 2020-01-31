@@ -41,12 +41,16 @@ public class StmtList extends Node {
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 
+		int i=1;
 		while(true) {
 		if(Stmt.isFirst(first)) { //次の判定を開始する
+			System.out.println(i+":"+first.getType()+":"+first.getValue().getSValue());
 			handler = Stmt.getHandler(first,env);
 			handler.parse();
 			s_list.add(handler);
 			first = env.getInput().get();
+			i++;
+
 			}else {
 				break;
 			}

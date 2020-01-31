@@ -43,6 +43,7 @@ public class Stmt extends Node {
 
 		LexicalUnit secand = env.getInput().get();//二文字目を読み込むにはenvのinputを経由してgetまでいく
 
+		
 		if(secand.getType() == LexicalType.EQ ) {
 			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
 			handler = Subst.getHandler(first , env);

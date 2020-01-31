@@ -32,7 +32,7 @@ public class Main {
 			lex = new LexicalAnalyzerImpl(pr);
 	        env = new Environment(lex); //読み込んだものを次にenvへ（ここで渡すのは読み込んだものの）
 	        first = lex.get();
-	        lex.unget(first);
+	       // lex.unget(first);
 
 	        if (Program.isFirst(first)) {//<program>というfirst集合に入っているかを確認する
 

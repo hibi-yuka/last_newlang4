@@ -21,7 +21,7 @@ public class ExprList extends Node{
 			LexicalType.INTVAL,
 			LexicalType.DOUBLEVAL,
 			//LexicalType.SUB,
-			//LexicalType.LP,
+			LexicalType.LP,
 			LexicalType.NAME,
 			LexicalType.LITERAL
 			);
@@ -37,8 +37,11 @@ public class ExprList extends Node{
 	public boolean parse() throws Exception{
 
 
+		if(first.getType() == LexicalType.LP) {
+			first = env.getInput().get();
+		}
 
-		System.out.println(first.getValue().getSValue());
+
 		if(Expr.isFirst(first)) {
 			handler = Expr.getHandler(first, env);//handlerを持てるリストを作るべし
 			handler.parse();

@@ -10,7 +10,7 @@ public class StmtList extends Node {
 	LexicalUnit first;
 	Environment env;
 	Node handler ;
-	public List<Node> handlerlist = new ArrayList<Node>();
+	List<Node>s_list  = new ArrayList<Node>();
 
 	public StmtList (LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
@@ -41,14 +41,22 @@ public class StmtList extends Node {
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 
+		while(true) {
 		if(Stmt.isFirst(first)) { //次の判定を開始する
 			handler = Stmt.getHandler(first,env);
 			handler.parse();
-			return true;
+			s_list.add(handler);
+			}else if(block.isFirst(first)) {
+				handler = Block.getHandler(first,env);
+				handler.parse();
+				s_list.add(handler);
+			}else
+				break;
 		}
-		throw new Exception("StmtListエラーです");//first集合でない時
+		return true;
 	}
 
+//	throw new Exception("StmtListエラーです");//first集合でない時
 
 	public String toString() {
 		return  handler.toString() ;

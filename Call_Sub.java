@@ -7,7 +7,7 @@ public class Call_Sub extends Node{
 
 	LexicalUnit first;
 	Environment env;
-	Node handler ;
+	Node handler,handler2 ;
 
 	public Call_Sub(LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
@@ -33,13 +33,14 @@ public class Call_Sub extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
-		handler = env.getVariable(first.getValue().get_sValue());//NAMEを保存
+		handler = env.getFunction(first.getValue().get_sValue());//NAMEを保存
+		//LexicalUnitクラス firstのgetValueよりvalue
 
 		first = env.getInput().get();//次を読み込む
 
 		if(ExprList.isFirst(first)) { //次の判定を開始する
-			handler = ExprList.getHandler(first,env);
-			handler.parse();
+			handler2 = ExprList.getHandler(first,env);
+			handler2.parse();
 			return true;
 		}
 		throw new Exception("Call_subエラーです");//first集合でない時

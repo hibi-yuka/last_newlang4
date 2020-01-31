@@ -45,12 +45,12 @@ public class Stmt extends Node {
 
 		if(secand.getType() == LexicalType.EQ ) {
 			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
-			Node handler = Subst.getHandler(first , env);
+			handler = Subst.getHandler(first , env);
 			handler.parse();
 			return true;
 		}else{
 			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
-			Node handler = Call_Sub.getHandler(first , env);
+			handler = Call_Sub.getHandler(first , env);
 			handler.parse();
 			return true;
 		}

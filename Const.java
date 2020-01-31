@@ -16,6 +16,10 @@ public class Const extends Node{
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
+			LexicalType.INTVAL,
+			LexicalType.DOUBLEVAL,
+			//LexicalType.SUB,
+			//LexicalType.LP,
 			LexicalType.NAME
 			);
 

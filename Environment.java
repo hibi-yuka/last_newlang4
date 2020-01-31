@@ -32,6 +32,3 @@ public class Environment {
 	        return v;//二回目の呼び出しなら
 	    }
 }
-//LexicalAnalayzerimpl保存
-//変数名とその中の値を保管する為
-//

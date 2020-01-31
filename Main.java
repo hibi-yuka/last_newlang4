@@ -10,8 +10,6 @@ public class Main {
 	/**
 	 * @param args
 	 */
-
-
 	public static void main(String[] args) throws Exception {
 
 	        LexicalAnalyzer lex;//LexicalAnalyzerクラスのlex
@@ -43,7 +41,6 @@ public class Main {
 	        else System.out.println("syntax error");//firts集合に該当するものなし＝解析できないのでアウト
 	}
 }
-
 //call_subに到達してない
 //print = 1 は　const print 1,print "hello" などはcall_sub = をungetする
 //メモ
@@ -51,6 +48,4 @@ public class Main {
 //分かっていない事
 //結局engには何が入っている？
 //インスタンスを引数に渡した時に何が渡される？どういう挙動をする？
-//目指すべき出力する形
-//parseの条件
-//vableノード a = b exprに丸投げ、そのexpeが変数保存する為にcontノードに保存
+//目指すべき出力する形,parseの条件,vableノード a = b exprに丸投げ、そのexpeが変数保存する為にcontノードに保存

@@ -43,8 +43,10 @@ public class StmtList extends Node {
 
 		int i=1;
 		while(true) {
+
+			if(first.getType() != LexicalType.NL) {
 		if(Stmt.isFirst(first)) { //次の判定を開始する
-			System.out.println(i+":"+first.getType()+":"+first.getValue().getSValue());
+			//System.out.println(i+":"+first.getType()+":"+first.getValue().getSValue());
 			handler = Stmt.getHandler(first,env);
 			handler.parse();
 			s_list.add(handler);
@@ -54,6 +56,9 @@ public class StmtList extends Node {
 			}else {
 				break;
 			}
+		}else {
+			first = env.getInput().get();
+		}
 		}
 		return true;
 	}

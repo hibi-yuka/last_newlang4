@@ -4,7 +4,7 @@ import java.util.EnumSet;
 import java.util.Set;
 
 public class Call_Sub extends Node{
-	
+
 	LexicalUnit first;
 	Environment env;
 	Node handler ;
@@ -14,15 +14,15 @@ public class Call_Sub extends Node{
 		this.env = env;
 		type = NodeType.FUNCTION_CALL;
 	}
-	
+
 	static final Set<LexicalType> firstSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
 			LexicalType.NAME
 			);
-	
+
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
 		return firstSet.contains(lu.getType());
 	}
-	
+
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //二つ目のメソッド
 
 		if(Call_Sub.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
@@ -33,8 +33,12 @@ public class Call_Sub extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
-		if(.isFirst(first)) { //次の判定を開始する
-			handler = StmtList.getHandler(first,env);
+		handler = env.getVariable(first.getValue().get_sValue());//NAMEを保存
+
+		first = env.getInput().get();//次を読み込む
+
+		if(ExprList.isFirst(first)) { //次の判定を開始する
+			handler = ExprList.getHandler(first,env);
 			handler.parse();
 			return true;
 		}
@@ -49,9 +53,9 @@ public class Call_Sub extends Node{
 
 
 
-			
-			
 
-		
+
+
+
 
 }

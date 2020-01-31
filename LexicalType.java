@@ -1,10 +1,10 @@
 package newlang4;
 
 public enum LexicalType {
-	LITERAL,	// •¶Žš—ñ’è”@i—áF@g•¶Žš—ñhj
-	INTVAL,		// ®”’è”	i—áF@‚Rj
-	DOUBLEVAL,	// ¬”“_’è”	i—áF@‚PD‚Qj
-	NAME,		// •Ï”		i—áF@ij
+	LITERAL,	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½è”ï¿½@ï¿½iï¿½ï¿½Fï¿½@ï¿½gï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hï¿½j
+	INTVAL,		// ï¿½ï¿½ï¿½ï¿½ï¿½è”	ï¿½iï¿½ï¿½Fï¿½@ï¿½Rï¿½j
+	DOUBLEVAL,	// ï¿½ï¿½ï¿½ï¿½ï¿½_ï¿½è”	ï¿½iï¿½ï¿½Fï¿½@ï¿½Pï¿½Dï¿½Qï¿½j
+	NAME,		// ï¿½Ïï¿½		ï¿½iï¿½ï¿½Fï¿½@iï¿½j
 	IF,			// IF
 	THEN,		// THEN
 	ELSE,		// ELSE
@@ -23,7 +23,7 @@ public enum LexicalType {
 	DIM,		// DIM
 	AS,			// AS
 	END,		// END
-	NL,			// ‰üs
+	NL,			// ï¿½ï¿½ï¿½s
 	DOT,		// .
 	WHILE,		// WHILE
 	DO,			// DO
@@ -32,8 +32,8 @@ public enum LexicalType {
 	SUB,		// -
 	MUL,		// *
 	DIV,		// /
-	LP,			// )
-	RP,			// (
+	RP,			// )
+	LP,			// (
 	COMMA,		// ,
 	LOOP,		// LOOP
 	TO,			// TO

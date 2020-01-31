@@ -39,7 +39,7 @@ public class Const extends Node{
 	}
 
 	public String toString() {
-		return handler.toString();
+		return v.getSValue();
 	}
 
 }

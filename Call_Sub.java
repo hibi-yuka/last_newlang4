@@ -33,12 +33,13 @@ public class Call_Sub extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
-		System.out.println(first.getValue().toString());
 
-		Function handler = env.getFunction(first.getValue().get_sValue());//NAMEを保存
+
+		Function handler = env.getFunction(first.getValue().getSValue());//NAMEを保存
 		//LexicalUnitクラス firstのgetValueよりvalue
 
 		first = env.getInput().get();//次を読み込む
+
 
 		if(ExprList.isFirst(first)) { //次の判定を開始する
 			handler2 = ExprList.getHandler(first,env);
@@ -50,7 +51,7 @@ public class Call_Sub extends Node{
 
 
 	public String toString() { //handerが出力するのはこれ
-		return   handler.toString() ;
+		return   handler2.toString() ;
 	}
 }
 

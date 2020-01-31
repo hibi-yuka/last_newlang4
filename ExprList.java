@@ -36,6 +36,9 @@ public class ExprList extends Node{
 
 	public boolean parse() throws Exception{
 
+
+
+		System.out.println(first.getValue().getSValue());
 		if(Expr.isFirst(first)) {
 			handler = Expr.getHandler(first, env);//handlerを持てるリストを作るべし
 			handler.parse();
@@ -46,17 +49,24 @@ public class ExprList extends Node{
 
 		first = env.getInput().get();//次を読み込む
 
+
 		if(first.getType() == LexicalType.COMMA) {
 			first = env.getInput().get();//次を読み込む
 			if(Expr.isFirst(first)) {
+
 				handler = Expr.getHandler(first, env);
 				handler.parse();
 				e_list.add(handler);
-			}else
+			}else {
+				env.getInput().unget(first);
 				break;
 			}
 		}
-		return true;//無限ループが起こった場合はここが悪い可能性がある
+		break;
+		//無限ループが起こった場合はここが悪い可能性がある
+	}
+
+		return true;
 	}
 
 	public String toString() {

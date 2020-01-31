@@ -5,6 +5,8 @@ package newlang4;
  */
 public class Function {
 
+	String fun;
+
     /** Creates a new instance of Function */
     public Function() {
     }

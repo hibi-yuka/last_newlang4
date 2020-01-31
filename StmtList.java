@@ -46,12 +46,10 @@ public class StmtList extends Node {
 			handler = Stmt.getHandler(first,env);
 			handler.parse();
 			s_list.add(handler);
-			}else if(block.isFirst(first)) {
-				handler = Block.getHandler(first,env);
-				handler.parse();
-				s_list.add(handler);
-			}else
+			first = env.getInput().get();
+			}else {
 				break;
+			}
 		}
 		return true;
 	}
@@ -59,6 +57,6 @@ public class StmtList extends Node {
 //	throw new Exception("StmtListエラーです");//first集合でない時
 
 	public String toString() {
-		return  handler.toString() ;
+		return  s_list.toString() ;
 	}
 }

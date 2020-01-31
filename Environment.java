@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class Environment {
 	   LexicalAnalyzer input;
-	   Map<String, Function> library;
+	   Map<String, Function> library;//関数名及び、その関数の中身のmap
 	   Map<String, VariableNode> var_table;
 
 	    public Environment(LexicalAnalyzer my_input) {
@@ -32,3 +32,6 @@ public class Environment {
 	        return v;//二回目の呼び出しなら
 	    }
 }
+//LexicalAnalayzerimpl保存
+//変数名とその中の値を保管する為
+//

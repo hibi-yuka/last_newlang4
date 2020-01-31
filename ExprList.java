@@ -58,6 +58,10 @@ public class ExprList extends Node{
 		}
 		return true;//無限ループが起こった場合はここが悪い可能性がある
 	}
+
+	public String toString() {
+		return e_list.toString();
+	}
 }
 
 //	if(first.getType() == LexicalType.RP) { )がきた時点で抜ける

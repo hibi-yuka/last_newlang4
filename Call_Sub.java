@@ -33,6 +33,8 @@ public class Call_Sub extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
 
+		System.out.println(first.getValue().toString());
+
 		Function handler = env.getFunction(first.getValue().get_sValue());//NAMEを保存
 		//LexicalUnitクラス firstのgetValueよりvalue
 

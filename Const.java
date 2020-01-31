@@ -38,4 +38,8 @@ public class Const extends Node{
 		return true;
 	}
 
+	public String toString() {
+		return handler.toString();
+	}
+
 }

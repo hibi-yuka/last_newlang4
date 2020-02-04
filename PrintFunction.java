@@ -14,6 +14,11 @@ public class PrintFunction extends Function {
 	    	return null;
 	    }
 
-public String toString() {
+	@Override
+	public String toString() {
+		// TODO 自動生成されたメソッド・スタブ
+		return super.toString();
+	}
 }
-}
+
+

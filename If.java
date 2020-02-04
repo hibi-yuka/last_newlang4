@@ -7,7 +7,7 @@ public class If extends Node {
 
 	LexicalUnit first;
 	Environment env;
-	Node cond,stmt_list,else_block;
+	Node cond,stmt_list,elseif,else_;
 
 
 	public If(LexicalUnit first,Environment env) {
@@ -65,24 +65,25 @@ public class If extends Node {
 			stmt_list.parse();
 		}
 
-		if(Else_Block.isFirst(first)) {
-			else_block = Else_Block.getHandler(first, env);
-			else_block.parse();
-		}
-
-		if(first.getType() != LexicalType.ENDIF) {
+		//elseの場合、else ifの場合、なにもない場合
+		if(first.getType() != LexicalType.ELSEIF) {
+			elseif = If.getHandler(first, env);
+			elseif.parse();
+		}else if(first.getType() != LexicalType.ELSE) {
+			else_ = If.getHandler(first, env);
+			else_.parse();
+		}else if(first.getType() != LexicalType.ENDIF) {
 			throw new Exception("Ifエラーです");
 		}
-
-		if(first.getType() != LexicalType.NL) {
-			throw new Exception("Ifエラーです");
+			if(first.getType() != LexicalType.NL) {
+				throw new Exception("Ifエラーです");
 		}
-		return true;
+			return true;
 	}
 
 	@Override
 	public String toString() {
 		// TODO 自動生成されたメソッド・スタブ
-		return handler.toString();
+		return cond.toString();
 	}
 }

@@ -20,7 +20,6 @@ public enum NodeType {
     END,
 }
 //<varlist>
-//<if_prefix>
 //<else_block>
 //<else_if_block>
 //<subst>

@@ -13,4 +13,7 @@ public class PrintFunction extends Function {
 		// printf(arg[0]);
 	    	return null;
 	    }
+
+public String toString() {
+}
 }

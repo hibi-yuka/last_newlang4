@@ -15,12 +15,12 @@ public class End extends Node{
 		type = NodeType.END;
 	}
 
-	static final Set<LexicalType> fristSet =  EnumSet.of(
+	static final Set<LexicalType> firstSet =  EnumSet.of(
 			LexicalType.END
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
-		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
+		return firstSet.contains(lu.getType()); //リストが特定の要素を含むか判定
 	}
 
 	public static Node getHandler(LexicalUnit first, Environment env) { //ここでは引数が二つ渡されている。最初に読み込んだ
@@ -33,12 +33,20 @@ public class End extends Node{
 	}
 
 	public String toString() {
-		if (type == NodeType.END) {
+
 			return "END";
-		}else{
-				System.out.println(type);
-		return "Node";
-		}
+
 	}
 }
 //Stmt_list処理可能か→true→stmt_list→またend →　stmtに
+
+//public String toString() {
+//	if (type == NodeType.END) {
+//		return "END";
+//	}else{
+//			System.out.println(type);
+//	return "Node";
+//	}
+
+
+//Stmt_list

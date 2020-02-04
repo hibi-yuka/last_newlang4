@@ -15,27 +15,27 @@ public class Stmt extends Node {
 		type = NodeType.STMT;
 	}
 
-	static final Set<LexicalType> fristSet =  EnumSet.of(
+	static final Set<LexicalType> firstSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
 			LexicalType.END
 			);
 
-	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
-		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
+	public static boolean isFirst(LexicalUnit lu) {
+		return firstSet.contains(lu.getType());
 	}
 
-	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) throws Exception {
 
-		if(Stmt.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(Stmt.isFirst(first)){
 			return new Stmt(first,env);
 		}
-		throw new Exception("EndNodeにないfrst集合です");//first集合でない時
+		throw new Exception("EndNodeにないfrst集合です");
 	}
 
 	public boolean parse() throws Exception{
 
-		if(End.isFirst(first)){ //次の判定を開始する
+		if(End.isFirst(first)){
 			handler = End.getHandler(first,env);
 			handler.parse();
 			return true;
@@ -43,21 +43,20 @@ public class Stmt extends Node {
 
 		LexicalUnit secand = env.getInput().get();//二文字目を読み込むにはenvのinputを経由してgetまでいく
 
-		
+
 		if(secand.getType() == LexicalType.EQ ) {
-			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
+			env.getInput().unget(secand);
 			handler = Subst.getHandler(first , env);
 			handler.parse();
 			return true;
 		}else{
-			env.getInput().unget(secand);//読み込んだ文字を読まなかった事にする
+			env.getInput().unget(secand);
 			handler = Call_Sub.getHandler(first , env);
 			handler.parse();
 			return true;
 		}
 	}
 	//throw new Exception("Stmtエラーです");//first集合でない時
-
 
 	public String toString() {
 		return  handler.toString() ;

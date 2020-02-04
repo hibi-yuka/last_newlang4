@@ -26,24 +26,22 @@ public class ExprList extends Node{
 			LexicalType.LITERAL
 			);
 
-	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
+	public static boolean isFirst(LexicalUnit lu) {
 		return firstSet.contains(lu.getType());
 	}
 
-	public static Node getHandler(LexicalUnit first, Environment env) { //二つ目のメソッドここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) {
 		return new ExprList(first,env);
 	}
 
 	public boolean parse() throws Exception{
 
-
 		if(first.getType() == LexicalType.LP) {
 			first = env.getInput().get();
 		}
 
-
 		if(Expr.isFirst(first)) {
-			handler = Expr.getHandler(first, env);//handlerを持てるリストを作るべし
+			handler = Expr.getHandler(first, env);
 			handler.parse();
 			e_list.add(handler);
 		}
@@ -53,7 +51,7 @@ public class ExprList extends Node{
 		first = env.getInput().get();//次を読み込む
 
 
-		if(first.getType() == LexicalType.COMMA) {
+		if(first.getType() == LexicalType.COMMA) {//コンマだったら中の処理、そうでないならbreak
 			first = env.getInput().get();//次を読み込む
 			if(Expr.isFirst(first)) {
 
@@ -64,6 +62,7 @@ public class ExprList extends Node{
 				env.getInput().unget(first);
 				break;
 			}
+			//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 		}
 		break;
 		//無限ループが起こった場合はここが悪い可能性がある

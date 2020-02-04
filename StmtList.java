@@ -18,7 +18,7 @@ public class StmtList extends Node {
 		type = NodeType.STMT_LIST;
 	}
 
-	static final Set<LexicalType> fristSet =  EnumSet.of(
+	static final Set<LexicalType> firstSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
 			LexicalType.END,
@@ -28,7 +28,7 @@ public class StmtList extends Node {
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {
-		return fristSet.contains(lu.getType());
+		return firstSet.contains(lu.getType());
 	}
 
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
@@ -41,29 +41,28 @@ public class StmtList extends Node {
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 
-		int i=1;
+
 		while(true) {
+			//NLの処理もやりなおす
 
 			if(first.getType() != LexicalType.NL) {
-		if(Stmt.isFirst(first)) { //次の判定を開始する
-			//System.out.println(i+":"+first.getType()+":"+first.getValue().getSValue());
-			handler = Stmt.getHandler(first,env);
-			handler.parse();
-			s_list.add(handler);
-			first = env.getInput().get();
-			i++;
+				if(Stmt.isFirst(first)) { //次の判定を開始する
+					handler = Stmt.getHandler(first,env);
+					handler.parse();
+					s_list.add(handler);
+					first = env.getInput().get();
 
+				}else {
+					break;
+				}
 			}else {
-				break;
+				first = env.getInput().get();
 			}
-		}else {
-			first = env.getInput().get();
-		}
 		}
 		return true;
 	}
 
-//	throw new Exception("StmtListエラーです");//first集合でない時
+	//	throw new Exception("StmtListエラーです");//first集合でない時
 
 	public String toString() {
 		return  s_list.toString() ;

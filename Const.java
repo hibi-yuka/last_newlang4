@@ -18,9 +18,9 @@ public class Const extends Node{
 	static final Set<LexicalType> fristSet =  EnumSet.of(
 			LexicalType.INTVAL,
 			LexicalType.DOUBLEVAL,
+			LexicalType.LITERAL
 			//LexicalType.SUB,
 			//LexicalType.LP,
-			LexicalType.NAME
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu

@@ -7,7 +7,7 @@ public class If extends Node {
 
 	LexicalUnit first;
 	Environment env;
-	Node cond,stmt_list,elseif,else_;
+	Node cond,stmt_list1,elseif,else_,stmt_list2;
 
 
 	public If(LexicalUnit first,Environment env) {
@@ -17,7 +17,8 @@ public class If extends Node {
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(
-			LexicalType.IF
+			LexicalType.IF,
+			LexicalType.ELSEIF
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {
@@ -61,22 +62,42 @@ public class If extends Node {
 		first = env.getInput().get();
 
 		if(StmtList.isFirst(first)) {
-			stmt_list = StmtList.getHandler(first, env);
-			stmt_list.parse();
+			stmt_list1 = StmtList.getHandler(first, env);
+			stmt_list1.parse();
 		}
 
 		//elseの場合、else ifの場合、なにもない場合
-		if(first.getType() != LexicalType.ELSEIF) {
+		if(first.getType() == LexicalType.ELSEIF) {
 			elseif = If.getHandler(first, env);
 			elseif.parse();
-		}else if(first.getType() != LexicalType.ELSE) {
-			else_ = If.getHandler(first, env);
-			else_.parse();
-		}else if(first.getType() != LexicalType.ENDIF) {
-			throw new Exception("Ifエラーです");
-		}
-			if(first.getType() != LexicalType.NL) {
+			return true;
+
+		}else if(first.getType() == LexicalType.ELSE) {
+
+			first = env.getInput().get();//次を読み込みNLか調べる
+
+			if(first.getType() != LexicalType.NL) {//NLでないならエラー、NLなら通る
 				throw new Exception("Ifエラーです");
+			}
+
+			if(StmtList.isFirst(first)) {
+				stmt_list2 = StmtList.getHandler(first, env);
+				stmt_list2.parse();
+			}
+
+			if(first.getType() != LexicalType.ENDIF) {
+				throw new Exception("Ifエラーです");
+			}
+			first = env.getInput().get();//次を読み込みNLか調べる
+			if(first.getType() == LexicalType.NL) {
+				throw new Exception("Ifエラーです");
+				return true;
+			}
+		}else if(first.getType() != LexicalType.ENDIF)
+			throw new Exception("Ifエラーです");
+
+	if(first.getType() != LexicalType.NL) {
+	throw new Exception("Ifエラーです");
 		}
 			return true;
 	}

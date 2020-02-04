@@ -65,6 +65,12 @@ public class Cond extends Node{
 		}
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		// TODO 自動生成されたメソッド・スタブ
+		return handler_left + handler_right.toString();
+	}
 }
 
 

@@ -8,7 +8,7 @@ public class Loop extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node cond,stmt_list ;
-	boolean isuntil;
+	boolean isuntil1,isuntl2;
 
 	public Loop(LexicalUnit first,Environment env) {
 		this.first = first;
@@ -76,13 +76,13 @@ public class Loop extends Node{
 			first = env.getInput().get();
 
 			//前判定
-			if(first.getType() != LexicalType.WHILE || first.getType() != LexicalType.UNTIL) {
+			if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
 
 				//whileかuntilか判定
-				if(first.getType() != LexicalType.WHILE) {
-					isuntil = true;
+				if(first.getType() == LexicalType.WHILE) {
+					isuntil1 = true;
 				}else {
-					isuntil = false;
+					isuntil1 = false;
 				}
 
 				first = env.getInput().get();
@@ -120,7 +120,7 @@ public class Loop extends Node{
 				}else {
 					throw new Exception("DO[NL]エラーです");
 				}
-
+			//後判定
 			}else if(first.getType() == LexicalType.NL) {
 
 				first = env.getInput().get();
@@ -139,35 +139,42 @@ public class Loop extends Node{
 
 				first = env.getInput().get();
 
-				if(first.getType() != LexicalType.WHILE || first.getType() != LexicalType.UNTIL) {
-					first = env.getInput().get();
-				}else {
-					throw new Exception("DO[while or until]エラーです");
-				}
+				if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
 
-				if(Cond.isFirst(first)) {
-					cond = Cond.getHandler(first, env);
-					cond.parse();
-					first = env.getInput().get();
-				}else {
-					throw new Exception("DO[Cond]エラーです");
-				}
+					if(first.getType() == LexicalType.WHILE) {
+						isuntl2 = true;
+					}else {
+						isuntl2 = false;
+					}
 
-				if(first.getType() == LexicalType.NL) {
-					return true;
-				}else {
-					throw new Exception("DO[NL]エラーです");
+					first = env.getInput().get();
+
+					if(Cond.isFirst(first)) {
+						cond = Cond.getHandler(first, env);
+						cond.parse();
+						first = env.getInput().get();
+					}else {
+						throw new Exception("DO[Cond]エラーです");
+					}
+
+					if(first.getType() == LexicalType.NL) {
+						return true;
+					}else {
+						throw new Exception("DO[NL]エラーです");
+					}
 				}
 			}
 		}
 		return false;
 	}
 
-	public String toString(){
 
-		return cond.toString();
+		public String toString(){
 
-	}
+			return cond.toString();
+
+		}
+
 }
 
 

@@ -50,7 +50,6 @@ public class ExprList extends Node{
 
 			first = env.getInput().get();//次を読み込む
 
-
 			if(first.getType() == LexicalType.COMMA) {//コンマだったら中の処理、そうでないならbreak
 				first = env.getInput().get();//次を読み込む
 				if(Expr.isFirst(first)) {
@@ -64,6 +63,7 @@ public class ExprList extends Node{
 				}
 				//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 			}
+			env.getInput().unget(first);
 			break;
 			//無限ループが起こった場合はここが悪い可能性がある
 		}

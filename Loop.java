@@ -8,7 +8,7 @@ public class Loop extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node cond,stmt_list ;
-	boolean isuntil,isdo;
+	boolean isuntil,isdo;//
 
 	public Loop(LexicalUnit first,Environment env) {
 		this.first = first;
@@ -77,7 +77,7 @@ public class Loop extends Node{
 
 			//前判定
 			if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
-
+				//isdoは初期状態はfalseだからこの状態だと前判定になる
 				//whileかuntilか判定
 				if(first.getType() != LexicalType.WHILE) {//UNTILならture, WHILEならfalse
 					isuntil = true;
@@ -124,6 +124,8 @@ public class Loop extends Node{
 			//後判定
 			}else if(first.getType() == LexicalType.NL) {
 
+				isdo = true;//ここをtrueにすると後判定扱いになる、後でwhile trueの判定を行う
+
 				first = env.getInput().get();
 
 				if(StmtList.isFirst(first)) {
@@ -143,9 +145,9 @@ public class Loop extends Node{
 				if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
 
 					if(first.getType() != LexicalType.WHILE) {
-						isdo = true;
+						isuntil = true;
 					}else {
-						isdo = false;
+						isuntil = false;
 					}
 
 					first = env.getInput().get();
@@ -172,7 +174,18 @@ public class Loop extends Node{
 
 		public String toString(){
 
-			return cond.toString();
+
+			if(isdo == false || isuntil == false) {
+			return "DO WHILE"+ cond + "NL" + stmt_list + "LOOP + NL".toString();
+			}else if(isdo == false || isuntil == true) {
+				return "DO UNTIL"+ cond + "NL" + stmt_list + "LOOP + NL".toString();
+			}else if(isdo == true || isuntil == false) {
+				return "DO NL"+ stmt_list + "LOOP WHILE" + cond + " NL".toString();
+			}else if(isdo == true || isuntil == true) {
+				return "DO NL"+ stmt_list + "LOOP UNTIL" + cond + " NL".toString();
+			}
+			return "[" + cond +"]+["+stmt_list+"]".toString();
+
 
 		}
 

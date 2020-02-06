@@ -36,7 +36,7 @@ public class ExprList extends Node{
 
 	public boolean parse() throws Exception{
 
-		if(first.getType() == LexicalType.LP) {
+		if(first.getType() == LexicalType.LP) { //RPもいれる
 			first = env.getInput().get();
 		}
 
@@ -58,8 +58,8 @@ public class ExprList extends Node{
 					handler.parse();
 					e_list.add(handler);
 				}else {
-					env.getInput().unget(first);
-					break;
+					throw new Exception("ExprListにないfrst集合です");
+
 				}
 				//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 			}

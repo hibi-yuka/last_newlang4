@@ -7,7 +7,7 @@ public class If extends Node {
 
 	LexicalUnit first;
 	Environment env;
-	Node cond,stmt_list1,elseif,else_,stmt_list2;
+	Node cond,stmt_list1,elseif,else_;
 
 
 	public If(LexicalUnit first,Environment env) {
@@ -81,20 +81,20 @@ public class If extends Node {
 			}
 
 			if(StmtList.isFirst(first)) {
-				stmt_list2 = StmtList.getHandler(first, env);
-				stmt_list2.parse();
+				elseif = StmtList.getHandler(first, env);
+				elseif.parse();
 			}
 
 			if(first.getType() != LexicalType.ENDIF) {
 				throw new Exception("Ifエラーです");
 			}
-			first = env.getInput().get();//次を読み込みNLか調べる
-			if(first.getType() == LexicalType.NL) {
-				throw new Exception("Ifエラーです");
-			}
+			first = env.getInput().get();
+
 
 		}else if(first.getType() != LexicalType.ENDIF)
 			throw new Exception("Ifエラーです");
+
+		first = env.getInput().get();
 
 		if(first.getType() != LexicalType.NL) {
 			throw new Exception("Ifエラーです");

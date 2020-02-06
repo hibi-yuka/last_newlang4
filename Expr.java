@@ -12,6 +12,7 @@ public class Expr extends Node{
 	public Expr (LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
 		this.env = env;
+		type = NodeType.EXPR;
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します

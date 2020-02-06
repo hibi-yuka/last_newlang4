@@ -5,7 +5,7 @@ import java.util.Set;
 
 public class Loop extends Node{
 
-	LexicalUnit first;
+	LexicalUnit first,isuntil;
 	Environment env;
 	Node cond,stmt_list ;
 
@@ -72,13 +72,18 @@ public class Loop extends Node{
 			}
 
 		}else if(first.getType() == LexicalType.DO){ //Doだった場合
+
 			first = env.getInput().get();
 
-			if(first.getType() != LexicalType.WHILE || first.getType() != LexicalType.UNTIL) {
+			if(first.getType() != LexicalType.WHILE) {
 				first = env.getInput().get();
+			}else if(first.getType() != LexicalType.UNTIL) {
+				isuntil = first;
+				first = env.getInput().get();
+			}
 
 				if(Cond.isFirst(first)) {
-					cond = getHandler(first, env);
+					cond = Cond.getHandler(first, env);
 					cond.parse();
 					first = env.getInput().get();
 				}else {
@@ -92,7 +97,7 @@ public class Loop extends Node{
 				first = env.getInput().get();
 
 				if(StmtList.isFirst(first)) {
-					stmt_list = getHandler(first, env);
+					stmt_list = StmtList.getHandler(first, env);
 					stmt_list.parse();
 					first = env.getInput().get();
 				}else {
@@ -116,7 +121,7 @@ public class Loop extends Node{
 				first = env.getInput().get();
 
 				if(StmtList.isFirst(first)) {
-					stmt_list = getHandler(first, env);
+					stmt_list = StmtList.getHandler(first, env);
 					stmt_list.parse();
 					first = env.getInput().get();
 				}else {
@@ -136,7 +141,7 @@ public class Loop extends Node{
 				}
 
 				if(Cond.isFirst(first)) {
-					cond = getHandler(first, env);
+					cond = Cond.getHandler(first, env);
 					cond.parse();
 					first = env.getInput().get();
 				}else {
@@ -149,8 +154,14 @@ public class Loop extends Node{
 					throw new Exception("DO[NL]エラーです");
 				}
 			}
-		}
+
 		return false;
+	}
+
+	public String toString(){
+
+		return cond.toString();
+
 	}
 }
 

@@ -31,7 +31,7 @@ public class Subst extends Node{
 
 	public boolean parse() throws Exception{ //三つ目のメソッド
 
-		handler = env.getVariable(first.getValue().get_sValue());
+		handler = env.getVariable(first.getValue().getSValue());
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
@@ -54,7 +54,7 @@ public class Subst extends Node{
 	}
 
 	public String toString() {
-		return handler.toString(); //handler2も追加すべし
+		return "[" + handler +"] = [" + handler2 + "] ".toString(); //handler2も追加すべし
 
 	}
 }

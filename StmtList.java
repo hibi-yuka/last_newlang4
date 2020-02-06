@@ -42,10 +42,8 @@ public class StmtList extends Node {
 
 	public boolean parse() throws Exception{//ここでツリーを作る
 
-
 		while(true) {
 			//NLの処理もやりなおす
-
 			if(first.getType() != LexicalType.NL) {
 				if(Stmt.isFirst(first)) { //次の判定を開始する
 					handler = Stmt.getHandler(first,env);

@@ -7,7 +7,7 @@ public class If extends Node {
 
 	LexicalUnit first;
 	Environment env;
-	Node cond,stmt_list1,elseif,else_;
+	Node cond,stmt_list1,elseif;
 
 
 	public If(LexicalUnit first,Environment env) {
@@ -88,8 +88,6 @@ public class If extends Node {
 			if(first.getType() != LexicalType.ENDIF) {
 				throw new Exception("Ifエラーです");
 			}
-			first = env.getInput().get();
-
 
 		}else if(first.getType() != LexicalType.ENDIF)
 			throw new Exception("Ifエラーです");
@@ -105,6 +103,6 @@ public class If extends Node {
 	@Override
 	public String toString() {
 		// TODO 自動生成されたメソッド・スタブ
-		return cond.toString();
+		return  "["+cond+"] ["+ stmt_list1 +"]["+ elseif +"]".toString();
 	}
 }

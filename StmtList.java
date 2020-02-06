@@ -52,7 +52,11 @@ public class StmtList extends Node {
 					handler.parse();
 					s_list.add(handler);
 					first = env.getInput().get();
-
+				}else if(Block.isFirst(first)) {
+					handler = Block.getHandler(first,env);
+					handler.parse();
+					s_list.add(handler);
+					first = env.getInput().get();
 				}else {
 					break;
 				}

@@ -68,6 +68,9 @@ public class ExprList extends Node{
 			//無限ループが起こった場合はここが悪い可能性がある
 		}
 
+		if(first.getType() == LexicalType.RP) { //RPもいれる
+			//first = env.getInput().get();
+		}
 		return true;
 	}
 
@@ -76,4 +79,4 @@ public class ExprList extends Node{
 	}
 }
 
-//	if(first.getType() == LexicalType.RP) { )がきた時点で抜ける
+

@@ -12,38 +12,39 @@ public class Main {
 	 */
 	public static void main(String[] args) throws Exception {
 
-	        LexicalAnalyzer lex;
-	        LexicalUnit		first;
-	        Environment		env;
+		LexicalAnalyzer lex;
+		LexicalUnit		first;
+		Environment		env;
 
-	        System.out.println("basic parser");
+		System.out.println("basic parser");
 
-	        File file = new File("test01.bas");
-			FileReader fr = null;
+		File file = new File("test01.bas");
+		FileReader fr = null;
+		try {
+			fr = new FileReader(file);
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+		PushbackReader pr = new PushbackReader(fr);
+		lex = new LexicalAnalyzerImpl(pr);
+		env = new Environment(lex);
+		first = lex.get();
+
+		if (Program.isFirst(first)) {
+
+			Node handler = Program.getHandler(first, env);
 			try {
-				fr = new FileReader(file);
-			} catch (FileNotFoundException e) {
-
+				handler.parse();
+				System.out.println(handler);
+			}catch (Exception e) {
 				e.printStackTrace();
+				System.out.println(e);
 			}
-			PushbackReader pr = new PushbackReader(fr);
-			lex = new LexicalAnalyzerImpl(pr);
-	        env = new Environment(lex);
-	        first = lex.get();
-
-	        if (Program.isFirst(first)) {
-
-	        	Node handler = Program.getHandler(first, env);
-	        	try {
-	        	handler.parse();
-	        //	System.out.println(handler);
-	        	}catch (Exception e) {
-	        		e.printStackTrace();
-	        		System.out.println(e);
-	        	}
-	        }
+		}
+		 else System.out.println("syntax error");
 	}
 }
-	       // else System.out.println("syntax error");
-	
+// else System.out.println("syntax error");
+
 

@@ -28,17 +28,17 @@ public class If extends Node {
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception {
 
 		if(If.isFirst(first)){
-		 return new If(first,env);
+			return new If(first,env);
 		}
 		throw new Exception("Ifにはないfirst集合です");
 	}
 
 	public boolean parse() throws Exception{
 
-		if(first.getType() == LexicalType.IF) {
+		if(first.getType() == LexicalType.IF || first.getType() == LexicalType.ELSEIF) {
 			first = env.getInput().get();
 		}else {
-			throw new Exception("If_prefixエラーです");
+			throw new Exception("If or Elseifエラーです");
 		}
 
 		if(Cond.isFirst(first)) {
@@ -96,10 +96,10 @@ public class If extends Node {
 		}else if(first.getType() != LexicalType.ENDIF)
 			throw new Exception("Ifエラーです");
 
-	if(first.getType() != LexicalType.NL) {
-	throw new Exception("Ifエラーです");
+		if(first.getType() != LexicalType.NL) {
+			throw new Exception("Ifエラーです");
 		}
-			return true;
+		return true;
 	}
 
 	@Override

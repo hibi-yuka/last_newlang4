@@ -11,9 +11,10 @@ public class Subst extends Node{
 	Node handler,handler2 ;
 
 
-	public Subst (LexicalUnit first,Environment env) {//コンストラクタ
+	public Subst (LexicalUnit first,Environment env) {
 		this.first = first;
 		this.env = env;
+		type = NodeType.ASSIGN_STMT;
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of(

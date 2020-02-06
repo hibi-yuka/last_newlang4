@@ -10,7 +10,7 @@ public class ExprList extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node handler;
-    List<Node> e_list = new ArrayList<Node>();
+	List<Node> e_list = new ArrayList<Node>();
 
 	public ExprList(LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
@@ -48,25 +48,25 @@ public class ExprList extends Node{
 
 		while(true) {
 
-		first = env.getInput().get();//次を読み込む
-
-
-		if(first.getType() == LexicalType.COMMA) {//コンマだったら中の処理、そうでないならbreak
 			first = env.getInput().get();//次を読み込む
-			if(Expr.isFirst(first)) {
 
-				handler = Expr.getHandler(first, env);
-				handler.parse();
-				e_list.add(handler);
-			}else {
-				env.getInput().unget(first);
-				break;
+
+			if(first.getType() == LexicalType.COMMA) {//コンマだったら中の処理、そうでないならbreak
+				first = env.getInput().get();//次を読み込む
+				if(Expr.isFirst(first)) {
+
+					handler = Expr.getHandler(first, env);
+					handler.parse();
+					e_list.add(handler);
+				}else {
+					env.getInput().unget(first);
+					break;
+				}
+				//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 			}
-			//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
+			break;
+			//無限ループが起こった場合はここが悪い可能性がある
 		}
-		break;
-		//無限ループが起こった場合はここが悪い可能性がある
-	}
 
 		return true;
 	}

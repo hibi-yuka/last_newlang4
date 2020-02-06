@@ -4,11 +4,11 @@ public enum NodeType {
 	PROGRAM, //<program>
 	STMT_LIST, //<stmt_list>
 	STMT, //<stmt>
-	FOR_STMT, //
-	ASSIGN_STMT, //
+	FOR_STMT, //<for>
+	ASSIGN_STMT, //<subst>
 	BLOCK,  //<block>
-	IF_BLOCK, //<if_prefix>
-	LOOP_BLOCK, //
+	IF_BLOCK, //<if>
+	LOOP_BLOCK, //Loop
 	COND, //<cond>
     EXPR_LIST, //<expr_list>
 	EXPR, //<expr>
@@ -22,9 +22,9 @@ public enum NodeType {
 //<varlist>
 //<else_block>
 //<else_if_block>
-//<subst>
+//
 //<call_sub>
 //<var>
 //<leftvar>
-//<expr_list>
+
 

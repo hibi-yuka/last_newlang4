@@ -39,24 +39,28 @@ public class Stmt extends Node {
 			handler = End.getHandler(first,env);
 			handler.parse();
 			return true;
+		}else if(For.isFirst(first)){
+			handler = End.getHandler(first,env);
+			handler.parse();
+			return true;
 		}
 
 		LexicalUnit secand = env.getInput().get();//二文字目を読み込むにはenvのinputを経由してgetまでいく
-
+		//isfirstの時点でEND,FOR,NAME以外は弾かれるのでsecondの時点でNAMeなのはほぼ確定
 
 		if(secand.getType() == LexicalType.EQ ) {
-			env.getInput().unget(secand);
+			env.getInput().unget(secand);// =を読まなかった扱いする為にunget
 			handler = Subst.getHandler(first , env);
 			handler.parse();
 			return true;
 		}else{
-			env.getInput().unget(secand);
+			env.getInput().unget(secand); // =を読まなかった扱いする為にunget
 			handler = Call_Sub.getHandler(first , env);
 			handler.parse();
 			return true;
 		}
 	}
-	//throw new Exception("Stmtエラーです");//first集合でない時
+
 
 	public String toString() {
 		return  handler.toString() ;

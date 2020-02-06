@@ -39,7 +39,6 @@ public class Expr extends Node{
 			return true;
 		}
 
-		System.out.println("***"+first.getValue().getSValue());
 		//Constのfirst集合NAME以外があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
 		handler = env.getVariable(first.getValue().getSValue());//ここに値を保存する firstがNAMEの時
 		return true;

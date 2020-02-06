@@ -8,7 +8,7 @@ public class Loop extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node cond,stmt_list ;
-	boolean isuntil1,isuntl2;
+	boolean isuntil,isdo;
 
 	public Loop(LexicalUnit first,Environment env) {
 		this.first = first;
@@ -79,10 +79,10 @@ public class Loop extends Node{
 			if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
 
 				//whileかuntilか判定
-				if(first.getType() == LexicalType.WHILE) {
-					isuntil1 = true;
+				if(first.getType() != LexicalType.WHILE) {//UNTILならture, WHILEならfalse
+					isuntil = true;
 				}else {
-					isuntil1 = false;
+					isuntil = false;
 				}
 
 				first = env.getInput().get();
@@ -141,10 +141,10 @@ public class Loop extends Node{
 
 				if(first.getType() == LexicalType.WHILE || first.getType() == LexicalType.UNTIL) {
 
-					if(first.getType() == LexicalType.WHILE) {
-						isuntl2 = true;
+					if(first.getType() != LexicalType.WHILE) {
+						isdo = true;
 					}else {
-						isuntl2 = false;
+						isdo = false;
 					}
 
 					first = env.getInput().get();

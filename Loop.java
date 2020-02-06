@@ -5,9 +5,10 @@ import java.util.Set;
 
 public class Loop extends Node{
 
-	LexicalUnit first,isuntil;
+	LexicalUnit first;
 	Environment env;
 	Node cond,stmt_list ;
+	boolean isuntil;
 
 	public Loop(LexicalUnit first,Environment env) {
 		this.first = first;
@@ -72,15 +73,19 @@ public class Loop extends Node{
 			}
 
 		}else if(first.getType() == LexicalType.DO){ //Doだった場合
-
 			first = env.getInput().get();
 
-			if(first.getType() != LexicalType.WHILE) {
+			//前判定
+			if(first.getType() != LexicalType.WHILE || first.getType() != LexicalType.UNTIL) {
+
+				//whileかuntilか判定
+				if(first.getType() != LexicalType.WHILE) {
+					isuntil = true;
+				}else {
+					isuntil = false;
+				}
+
 				first = env.getInput().get();
-			}else if(first.getType() != LexicalType.UNTIL) {
-				isuntil = first;
-				first = env.getInput().get();
-			}
 
 				if(Cond.isFirst(first)) {
 					cond = Cond.getHandler(first, env);
@@ -154,7 +159,7 @@ public class Loop extends Node{
 					throw new Exception("DO[NL]エラーです");
 				}
 			}
-
+		}
 		return false;
 	}
 

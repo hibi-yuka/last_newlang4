@@ -120,8 +120,7 @@ public class Loop extends Node{
 				}else {
 					throw new Exception("DO[NL]エラーです");
 				}
-
-			//後判定
+				//後判定
 			}else if(first.getType() == LexicalType.NL) {
 
 				isdo = true;//ここをtrueにすると後判定扱いになる、後でwhile trueの判定を行う
@@ -171,24 +170,18 @@ public class Loop extends Node{
 		return false;
 	}
 
+	public String toString(){
 
-		public String toString(){
-
-
-			if(isdo == false || isuntil == false) {
-			return "DO WHILE"+ cond + "NL" + stmt_list + "LOOP + NL".toString();
-			}else if(isdo == false || isuntil == true) {
-				return "DO UNTIL"+ cond + "NL" + stmt_list + "LOOP + NL".toString();
-			}else if(isdo == true || isuntil == false) {
-				return "DO NL"+ stmt_list + "LOOP WHILE" + cond + " NL".toString();
-			}else if(isdo == true || isuntil == true) {
-				return "DO NL"+ stmt_list + "LOOP UNTIL" + cond + " NL".toString();
-			}
-			return "[" + cond +"]+["+stmt_list+"]".toString();
-
-
+		if(isdo == false || isuntil == false) {
+			return "DO WHILE + [" + cond + stmt_list + "] + LOOP + NL";
+		}else if(isdo == false || isuntil == true) {
+			return "DO UNTIL + [" + cond + stmt_list + " ] + LOOP + NL";
+		}else if(isdo == true || isuntil == false) {
+			return "DO NL+ [" +stmt_list +"] + LOOP WHILE [" + cond + "]  NL";
+		}else{
+			return "DO NL+ [" +stmt_list +"] + LOOP UNTIL [" + cond + "] NL";
 		}
-
+	}
 }
 
 

@@ -120,6 +120,7 @@ public class Loop extends Node{
 				}else {
 					throw new Exception("DO[NL]エラーです");
 				}
+
 			//後判定
 			}else if(first.getType() == LexicalType.NL) {
 

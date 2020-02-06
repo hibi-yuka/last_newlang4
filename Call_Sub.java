@@ -35,11 +35,11 @@ public class Call_Sub extends Node{
 	public boolean parse() throws Exception{
 
 		Name = env.getFunction(first.getValue().getSValue());//NAMEを保存
-		//LexicalUnitクラス firstのgetValueよりvalue
+		//LexicalUnitクラス firstのgetValueよりValue型valueよりgetSValue
 
 		first = env.getInput().get();//次を読み込む
 
-		if(ExprList.isFirst(first)) { //次の判定を開始する
+		if(ExprList.isFirst(first)) {
 			expr_list = ExprList.getHandler(first,env);
 			expr_list.parse();
 			return true;
@@ -48,8 +48,8 @@ public class Call_Sub extends Node{
 	}
 
 
-	public String toString() { //handerが出力するのはこれ
-		return "["+ Name +"]  ["+ expr_list +"]".toString() ;//関数名の出力も実装
+	public String toString() {
+		return "["+ Name +"] = ["+ expr_list +"]".toString() ;
 	}
 }
 

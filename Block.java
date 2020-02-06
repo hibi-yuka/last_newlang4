@@ -3,8 +3,6 @@ package newlang4;
 import java.util.EnumSet;
 import java.util.Set;
 
-import org.graalvm.compiler.core.common.cfg.Loop;
-
 public class Block extends Node {
 
 	LexicalUnit first;

@@ -22,7 +22,8 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.DO,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド

@@ -24,7 +24,8 @@ public class StmtList extends Node {
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.DO,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {

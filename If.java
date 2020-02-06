@@ -91,8 +91,8 @@ public class If extends Node {
 			first = env.getInput().get();//次を読み込みNLか調べる
 			if(first.getType() == LexicalType.NL) {
 				throw new Exception("Ifエラーです");
-				return true;
 			}
+
 		}else if(first.getType() != LexicalType.ENDIF)
 			throw new Exception("Ifエラーです");
 

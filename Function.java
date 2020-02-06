@@ -11,7 +11,7 @@ public class Function {
     public Function() {
     }
 
-    public Value invoke(ExprList arg) {
+    public Value invoke(ExprList arg) {//呼び出す
     	return null;
     }
 

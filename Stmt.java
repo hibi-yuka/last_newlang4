@@ -18,7 +18,8 @@ public class Stmt extends Node {
 	static final Set<LexicalType> firstSet =  EnumSet.of(
 			LexicalType.NAME,
 			LexicalType.FOR,
-			LexicalType.END
+			LexicalType.END,
+			LexicalType.NL
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {

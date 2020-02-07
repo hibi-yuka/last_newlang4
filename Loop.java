@@ -185,9 +185,20 @@ public class Loop extends Node{
 
 	public Value getValue() throws Exception {
 
+		if(isdo = true) {//後判定ならば
+
+			stmt_list.getValue();
+
+		}else {//前判定ならば
+
+			while(cond.getValue().getSValue() == "true") { //判断して許可なら
+				 stmt_list.getValue(); //実行する
+			}
+		}
 		return null;
 	}
 }
+
 
 
 

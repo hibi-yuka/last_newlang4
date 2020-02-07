@@ -37,6 +37,9 @@ public class End extends Node{
 	}
 
 	public Value getValue() throws Exception {
+
+		System.exit(1);
+
 		return null;
 	}
 

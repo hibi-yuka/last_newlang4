@@ -112,7 +112,7 @@ public class If extends Node {
 		if(cond.getValue().getSValue() == "true") {
 			return stmt_list1.getValue();
 		}else 	if(cond.getValue().getSValue() == "false") {
-			if(elseif.getValue() != null);
+			if(elseif  != null);
 			return  elseif.getValue();
 		}
 		return null;

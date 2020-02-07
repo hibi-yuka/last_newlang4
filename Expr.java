@@ -89,7 +89,7 @@ public class Expr extends Node{
 
 		Value left = handler_left.getValue();
 
-		if( !ope.equals(ope)) {
+		if( ope != first.getType()) { //a =2 などの時
 			return handler_left.getValue();
 		}
 
@@ -99,7 +99,7 @@ public class Expr extends Node{
 
 			if(left.getType() == ValueType.INTEGER && light.getType() == ValueType.INTEGER) {
 
-				int int_value =	left.getIValue() + light.getIValue();
+				int int_value = left.getIValue() + light.getIValue();
 
 				return new ValueImpl(int_value + "",ValueType.INTEGER);
 

@@ -8,7 +8,7 @@ public class Subst extends Node{
 
 	LexicalUnit first;
 	Environment env;
-	Node handler,handler2 ;
+	Node handler_left,expr;
 
 
 	public Subst (LexicalUnit first,Environment env) {
@@ -21,17 +21,17 @@ public class Subst extends Node{
 			LexicalType.NAME
 			);
 
-	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
-		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
+	public static boolean isFirst(LexicalUnit lu) {
+		return fristSet.contains(lu.getType());
 	}
 
 	public static Node getHandler(LexicalUnit first, Environment env) {
 		return new Subst(first,env);
 	}
 
-	public boolean parse() throws Exception{ //三つ目のメソッド
+	public boolean parse() throws Exception{
 
-		handler = env.getVariable(first.getValue().getSValue());
+		handler_left = env.getVariable(first.getValue().getSValue());
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
@@ -43,8 +43,8 @@ public class Subst extends Node{
 		first = env.getInput().get(); //  前のが=だった時、次の文字をgetして読み込む
 
 		if(Expr.isFirst(first)) { //式かを判断する
-			handler2 = Expr.getHandler(first ,env);
-			handler2.parse();
+			expr = Expr.getHandler(first ,env);
+			expr.parse();
 			return true;
 
 		}
@@ -54,11 +54,11 @@ public class Subst extends Node{
 	}
 
 	public String toString() {
-		return "[" + handler +"] = [" + handler2 + "] ".toString(); //handler2も追加すべし
+		return "[" + handler_left +"] = [" + expr + "] ".toString(); //handler2も追加すべし
 	}
 
 	public Value getValue() throws Exception {
-		return null;
+		return handler_left;
 	}
 
 }

@@ -31,7 +31,7 @@ public class Subst extends Node{
 
 	public boolean parse() throws Exception{
 
-		handler_left = env.getVariable(first.getValue().getSValue());
+		handler_left = env.getVariable(first.getValue().getSValue());//引数に渡されるString型をvar_tableに登録する
 
 		first = env.getInput().get();//getはLexicalAnalyzerImplの奴
 
@@ -54,11 +54,13 @@ public class Subst extends Node{
 	}
 
 	public String toString() {
-		return "[" + handler_left +"] = [" + expr + "] ".toString(); //handler2も追加すべし
+		return "[" + handler_left +"] = [" + expr + "] ".toString();
 	}
 
 	public Value getValue() throws Exception {
-		return handler_left;
+
+		return;
+
 	}
 
 }

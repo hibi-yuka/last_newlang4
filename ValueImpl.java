@@ -8,6 +8,7 @@ public class ValueImpl extends Value{
           public ValueImpl(String s) { //n字句目の文字列を入れたい。
     		super(s);
 			 val = s;
+			 vat = ValueType.BOOL;
 		 }
 
 		 public ValueImpl(int i) {
@@ -33,12 +34,6 @@ public class ValueImpl extends Value{
 		 //ここまでvalueから継承したコンストラクタ一覧
 
 		@Override
-		public String get_sValue() {
-			// TODO 自動生成されたメソッド・スタブ
-			return null;
-		}
-
-		@Override
 		public String getSValue() {
 			// TODO 自動生成されたメソッド・スタブ
 			return this.val;
@@ -47,13 +42,13 @@ public class ValueImpl extends Value{
 		@Override
 		public int getIValue() {
 			// TODO 自動生成されたメソッド・スタブ
-			return 0;
+			return Integer.parseInt(this.val);
 		}
 
 		@Override
 		public double getDValue() {
 			// TODO 自動生成されたメソッド・スタブ
-			return 0;
+			return Double.parseDouble(this.val);
 		}
 
 		@Override
@@ -67,8 +62,6 @@ public class ValueImpl extends Value{
 			// TODO 自動生成されたメソッド・スタブ
 			return null;
 		};
-
-
 
 	}
 

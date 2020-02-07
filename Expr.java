@@ -95,9 +95,9 @@ public class Expr extends Node{
 			//string,int,dob
 			if(left.getType() == ValueType.INTEGER && light.getType() == ValueType.INTEGER) {
 
-				int a =	left.getIValue() + light.getIValue();
+				int int_value =	left.getIValue() + light.getIValue();
 
-				return a;
+				return int_value;
 
 			}
 

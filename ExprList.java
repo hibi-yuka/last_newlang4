@@ -68,8 +68,8 @@ public class ExprList extends Node{
 			//無限ループが起こった場合はここが悪い可能性がある
 		}
 
-		if(first.getType() == LexicalType.RP) { //RPもいれる
-			//first = env.getInput().get();
+		if(first.getType() != LexicalType.RP) { //RPもいれる
+			throw new Exception("Expr[RP]エラーです");
 		}
 		return true;
 	}
@@ -79,6 +79,14 @@ public class ExprList extends Node{
 	}
 
 	public Value getValue() throws Exception {
+		return null;
+	}
+
+	public Value getValue(ExprList arg) throws Exception {
+
+		for(int i =0; i < e_list.size(); i++) {
+		 e_list.get(i).getValue();
+		}//任意のインデックスの引数のgetvalueの結果を返す
 		return null;
 	}
 

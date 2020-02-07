@@ -189,10 +189,17 @@ public class Loop extends Node{
 
 			stmt_list.getValue();
 
-		}else {//前判定ならば
+			while(cond.getValue().getSValue() == "true") { //判断して許可なら
+				stmt_list.getValue(); //実行する
+			}
+			return null;
+		}
+
+
+		if(isdo = false) {
 
 			while(cond.getValue().getSValue() == "true") { //判断して許可なら
-				 stmt_list.getValue(); //実行する
+				stmt_list.getValue(); //実行する
 			}
 		}
 		return null;

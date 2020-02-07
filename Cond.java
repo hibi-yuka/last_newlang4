@@ -73,9 +73,15 @@ public class Cond extends Node{
 	}
 
 	public Value getValue() throws Exception {
-		return null;
-	}
 
+		if(ope == LexicalType.EQ) {
+			if(handler_left == handler_right) {
+				return true;
+			}else {
+				return false;
+			}
+		}
+	}
 }
 
 

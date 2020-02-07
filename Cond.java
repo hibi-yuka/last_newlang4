@@ -74,21 +74,36 @@ public class Cond extends Node{
 
 	public Value getValue() throws Exception {
 
+		Value left = handler_left.getValue();
+		Value right = handler_right.getValue();
+
+		if(left.getType() != left.getType()) {
+			throw new Exception("CONDエラーです");
+		}
+
 		if(ope == LexicalType.EQ) {
-			if(handler_left.getValue().getSValue() == handler_right.getValue().getSValue()) {
+
+			if(left.getSValue().equals(right.getSValue())) {
 				return new ValueImpl("true",ValueType.STRING);
 			}else{
 				return  new ValueImpl("false",ValueType.STRING);
 			}
+
 		}else if(ope == LexicalType.GT) {
-			if(handler_left.getValue().getSValue() => handler_right.getValue().getSValue()) {
+
+			if(left.getDValue() > right.getDValue()) {
+				return new ValueImpl("true",ValueType.STRING);
+			}else{
+				return  new ValueImpl("false",ValueType.STRING);
+			}
+		}else if(ope == LexicalType.LT) {
+
+			if(left.getDValue() < right.getDValue()) {
 				return new ValueImpl("true",ValueType.STRING);
 			}else{
 				return  new ValueImpl("false",ValueType.STRING);
 			}
 		}else {
-
-
 		}
 		return null;
 	}

@@ -106,15 +106,15 @@ public class If extends Node {
 		return  "["+cond+"] ["+ stmt_list1 +"]["+ elseif +"]".toString();
 	}
 
+	//
 	public Value getValue() throws Exception {
 
-		if(cond.getValue().getSValue() == "ture") {
-			return new ValueImpl("true",ValueType.STRING);
-		}else{
-			return  new ValueImpl("false",ValueType.STRING);
+		if(cond.getValue().getSValue() == "true") {
+			return stmt_list1.getValue();
+		}else if(cond.getValue().getSValue() == "false") {
+			return  elseif.getValue();
+		}else {
+			return null;
 		}
-
-		//return null;
 	}
-
 }

@@ -76,7 +76,13 @@ public class StmtList extends Node {
 	}
 
 	public Value getValue() throws Exception {
-		return handler.getValue();
+
+		for(int i =0; i < s_list.size(); i++) {
+
+		 s_list.get(i).getValue();
+
+		}
+		return null;
 	}
 }
 

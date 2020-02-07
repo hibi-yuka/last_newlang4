@@ -8,7 +8,7 @@ public class Expr extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node handler_left,handler_light,handler;
-	LexicalType ope;
+	LexicalType ope = null;
 
 	public Expr (LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
@@ -84,12 +84,12 @@ public class Expr extends Node{
 		}
 		return handler_left.toString();
 	}
-
+//getHandlerするものはungetがいる
 	public Value getValue() throws Exception {
 
 		Value left = handler_left.getValue();
 
-		if( ope != first.getType()) { //a =2 などの時
+		if( ope == null) { //a =2 などの時
 			return handler_left.getValue();
 		}
 

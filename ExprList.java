@@ -77,6 +77,11 @@ public class ExprList extends Node{
 	public String toString() {
 		return e_list.toString();
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }
 
 

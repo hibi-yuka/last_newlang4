@@ -42,4 +42,9 @@ public class Const extends Node{
 		return v.getSValue();
 	}
 
+	public Value getValue() throws Exception {
+		return null;
+	}
+
+
 }

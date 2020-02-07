@@ -18,7 +18,7 @@ public class Main {
 
 		System.out.println("basic parser");
 
-		File file = new File("test01.bas");
+		File file = new File("test07.bas");
 		FileReader fr = null;
 		try {
 			fr = new FileReader(file);
@@ -37,6 +37,7 @@ public class Main {
 			try {
 				handler.parse();
 				System.out.println(handler);
+
 			}catch (Exception e) {
 				e.printStackTrace();
 				System.out.println(e);
@@ -45,6 +46,4 @@ public class Main {
 		 else System.out.println("syntax error");
 	}
 }
-// else System.out.println("syntax error");
-
 

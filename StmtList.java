@@ -43,8 +43,11 @@ public class StmtList extends Node {
 	public boolean parse() throws Exception{//ここでツリーを作る
 
 		while(true) {
+
+
 			//NLの処理もやりなおす
 			if(first.getType() != LexicalType.NL) {
+				System.out.println(first);
 				if(Stmt.isFirst(first)) { //次の判定を開始する
 					handler = Stmt.getHandler(first,env);
 					handler.parse();
@@ -55,7 +58,9 @@ public class StmtList extends Node {
 					handler.parse();
 					s_list.add(handler);
 					first = env.getInput().get();
+
 				}else {
+					env.getInput().unget(first);
 					break;
 				}
 			}else {
@@ -70,4 +75,9 @@ public class StmtList extends Node {
 	public String toString() {
 		return  s_list.toString() ;
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
 }
+

@@ -182,6 +182,10 @@ public class Loop extends Node{
 			return "DO NL+ [" +stmt_list +"] + LOOP UNTIL [" + cond + "] NL";
 		}
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
 }
 
 

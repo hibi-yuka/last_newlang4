@@ -52,5 +52,9 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 	public String toString() { //handerが出力するのはこれ
 		return   handler.toString() ;
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
 }
 

@@ -55,6 +55,10 @@ public class Subst extends Node{
 
 	public String toString() {
 		return "[" + handler +"] = [" + handler2 + "] ".toString(); //handler2も追加すべし
-
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }

@@ -29,6 +29,7 @@ public class Call_Sub extends Node{
 		if(Call_Sub.isFirst(first)){
 			return new Call_Sub(first,env);
 		}
+		System.out.println(first);
 		throw new Exception("Call_Subにないfirst集合です");
 	}
 
@@ -47,9 +48,12 @@ public class Call_Sub extends Node{
 		throw new Exception("Call_subエラーです");//first集合でない時
 	}
 
-
 	public String toString() {
 		return "["+ Name +"] = ["+ expr_list +"]".toString() ;
+	}
+
+	public Value getValue() throws Exception {
+		return null;
 	}
 }
 

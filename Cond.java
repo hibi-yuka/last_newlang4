@@ -71,6 +71,11 @@ public class Cond extends Node{
 		// TODO 自動生成されたメソッド・スタブ
 		return "[" + handler_left + "] Operator ["  + handler_right + "]".toString();
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }
 
 

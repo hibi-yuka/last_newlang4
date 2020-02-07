@@ -105,4 +105,9 @@ public class If extends Node {
 		// TODO 自動生成されたメソッド・スタブ
 		return  "["+cond+"] ["+ stmt_list1 +"]["+ elseif +"]".toString();
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }

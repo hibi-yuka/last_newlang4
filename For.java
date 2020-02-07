@@ -81,4 +81,8 @@ public class For extends Node {
 			throw new Exception("For[Name]エラーです");
 		}
 	}
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }

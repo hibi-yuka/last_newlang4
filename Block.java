@@ -28,7 +28,7 @@ public class Block extends Node {
 	public static Node getHandler(LexicalUnit first, Environment env) throws Exception {
 
 		if(Block.isFirst(first)){
-			return new Stmt(first,env);
+			return new Block(first,env);
 		}
 		throw new Exception("Blockにないfrst集合です");
 	}
@@ -45,6 +45,15 @@ public class Block extends Node {
 			throw new Exception("Blockエラーです");
 		}
 		return true;
+	}
+
+	public String toString() {
+
+		return handler.toString();
+	}
+
+	public Value getValue() throws Exception {
+		return null;
 	}
 }
 

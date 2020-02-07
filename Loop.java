@@ -185,18 +185,26 @@ public class Loop extends Node{
 
 	public Value getValue() throws Exception {
 
-		while(true) {
+		if(isdo = true){//後判定ならば
+			stmt_list.getValue();
+		}
 
-			if(cond.getValue().getSValue() == "true" || isuntil == true) {
+		while(cond.getValue().getSValue() == "true") {//前判定ならば
+				stmt_list.getValue();
+			}
+
+		while(true) {//UNTILならば
+
+			if(cond.getValue().getSValue() == "true" && isuntil == true) {
 				break;
 
-			}else if(cond.getValue().getSValue() == "false" || isuntil == true) {
+			}else if(cond.getValue().getSValue() == "false" && isuntil == true) {
 				stmt_list.getValue();
 
-			}else if(cond.getValue().getSValue() == "true" || isuntil == false) {
+			}else if(cond.getValue().getSValue() == "true" && isuntil == false) {
 				stmt_list.getValue();
 
-			}else if(cond.getValue().getSValue() == "false" || isuntil == false) {
+			}else if(cond.getValue().getSValue() == "false" && isuntil == false) {
 				break;
 			}
 		}

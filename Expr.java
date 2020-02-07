@@ -97,12 +97,11 @@ public class Expr extends Node{
 
 				int int_value =	left.getIValue() + light.getIValue();
 
-				return int_value;
+				return new ValueImpl(int_value + "",ValueType.INTEGER);
 
 			}
 
-			left.getType();
-			light.getType();
+
 
 			left.
 

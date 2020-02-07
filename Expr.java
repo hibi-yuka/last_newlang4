@@ -41,11 +41,11 @@ public class Expr extends Node{
 	public boolean parse() throws Exception{
 
 		if(Const.isFirst(first)) {//Name以外が来たら 左辺
-			handler = Const.getHandler(first, env);
-			handler.parse();
+			handler_left = Const.getHandler(first, env);
+			handler_left.parse();
 			//return true;
 		}else if(first.getType() == LexicalType.NAME) {//NAMEが来たら
-			handler = env.getVariable(first.getValue().getSValue());
+			handler_left = env.getVariable(first.getValue().getSValue());
 		}else {
 			throw new Exception("Exprエラー");//ここで例外処理
 		}
@@ -58,12 +58,12 @@ public class Expr extends Node{
 			first = env.getInput().get();//更に次の読む
 
 			if(Const.isFirst(first)) {//Name以外が来たら 右辺スタート
-				handler = Const.getHandler(first, env);
-				handler.parse();
+				handler_light = Const.getHandler(first, env);
+				handler_light.parse();
 				return true;
 
 			}else if(first.getType() == LexicalType.NAME) {//NAMEが来たら
-				handler = env.getVariable(first.getValue().getSValue());
+				handler_light = env.getVariable(first.getValue().getSValue());
 				return true;
 			}else {
 				throw new Exception("Exprエラー");//ここで例外処理
@@ -79,11 +79,25 @@ public class Expr extends Node{
 
 		if(ope == LexicalType.ADD) {
 			return "["+handler_left+"]" + "+" + "["+handler_light+"]".toString();
+		}else if(ope == LexicalType.SUB) {
+			return "["+handler_left+"]" + "-" + "["+handler_light+"]".toString();
 		}
 		return handler.toString();
 	}
 
 	public Value getValue() throws Exception {
-		return handler.getValue();
+
+		Value left = handler_left.getValue();
+		Value light = handler_light.getValue();
+
+		if(ope == LexicalType.ADD) {
+
+			//string,int,doble
+
+			left.
+
+			return //valueが手に入る。ledtとlift
+		}
+		//return handler.getValue();
 	}
 }

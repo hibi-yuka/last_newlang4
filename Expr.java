@@ -92,7 +92,17 @@ public class Expr extends Node{
 
 		if(ope == LexicalType.ADD) {
 
-			//string,int,doble
+			//string,int,dob
+			if(left.getType() == ValueType.INTEGER && light.getType() == ValueType.INTEGER) {
+
+				int a =	left.getIValue() + light.getIValue();
+
+				return a;
+
+			}
+
+			left.getType();
+			light.getType();
 
 			left.
 

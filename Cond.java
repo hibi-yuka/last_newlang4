@@ -75,12 +75,14 @@ public class Cond extends Node{
 	public Value getValue() throws Exception {
 
 		if(ope == LexicalType.EQ) {
-			if(handler_left == handler_right) {
-				return new ValueImpl("true");
+			if(handler_left.getValue().getSValue() == handler_right.getValue().getSValue()) {
+				return new ValueImpl("true",ValueType.STRING);
 			}else{
-				return  new ValueImpl("false");
+				return  new ValueImpl("false",ValueType.STRING);
 			}
 		}else if(ope == LexicalType.GT) {
+
+
 			if(handler_left > handler_right) {
 
 				return new ValueImpl("true");

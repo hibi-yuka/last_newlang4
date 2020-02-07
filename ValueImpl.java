@@ -54,13 +54,13 @@ public class ValueImpl extends Value{
 		@Override
 		public boolean getBValue() {
 			// TODO 自動生成されたメソッド・スタブ
-			return false;
+			return Boolean.valueOf(this.val);
 		}
 
 		@Override
 		public ValueType getType() {
 			// TODO 自動生成されたメソッド・スタブ
-			return null;
+			return this.vat;
 		};
 
 	}

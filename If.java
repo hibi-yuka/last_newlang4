@@ -103,7 +103,7 @@ public class If extends Node {
 	@Override
 	public String toString() {
 		// TODO 自動生成されたメソッド・スタブ
-		return  "["+cond+"] ["+ stmt_list1 +"]["+ elseif +"]".toString();
+		return  "["+cond+"] ["+ stmt_list1 +"]["+ elseif +"]";
 	}
 
 	//

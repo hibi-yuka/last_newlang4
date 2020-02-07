@@ -82,7 +82,7 @@ public class Expr extends Node{
 		}else if(ope == LexicalType.SUB) {
 			return "["+handler_left+"]" + "-" + "["+handler_light+"]".toString();
 		}
-		return null;
+		return handler_left.toString();
 	}
 
 	public Value getValue() throws Exception {

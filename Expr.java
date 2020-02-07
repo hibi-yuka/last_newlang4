@@ -88,7 +88,12 @@ public class Expr extends Node{
 	public Value getValue() throws Exception {
 
 		Value left = handler_left.getValue();
-		Value light = handler_light.getValue();
+
+		if( !ope.equals(ope)) {
+			return handler_left.getValue();
+		}
+
+	    Value light = handler_light.getValue();
 
 		if(ope == LexicalType.ADD) {
 

@@ -189,11 +189,7 @@ public class Loop extends Node{
 			stmt_list.getValue();
 		}
 
-		while(cond.getValue().getSValue() == "true") {//前判定ならば
-				stmt_list.getValue();
-			}
-
-		while(true) {//UNTILならば
+		while(true) {//UNTILならば(排他的論理和)
 
 			if(cond.getValue().getSValue() == "true" && isuntil == true) {
 				break;

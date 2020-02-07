@@ -76,11 +76,12 @@ public class Cond extends Node{
 
 		if(ope == LexicalType.EQ) {
 			if(handler_left == handler_right) {
-				return true;
+				return new ValueImpl("true");
 			}else {
-				return false;
+				return  new ValueImpl("false");
 			}
 		}
+		return null;
 	}
 }
 

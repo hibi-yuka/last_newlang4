@@ -184,6 +184,9 @@ public class Loop extends Node{
 	}
 
 	public Value getValue() throws Exception {
+
+
+
 		return null;
 	}
 }

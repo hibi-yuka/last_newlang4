@@ -81,14 +81,13 @@ public class Cond extends Node{
 				return  new ValueImpl("false");
 			}
 		}else if(ope == LexicalType.GT) {
-			if(handler_left => handler_right) {
+			if(handler_left > handler_right) {
 
 				return new ValueImpl("true");
 			}else{
 				return new ValueImpl("false");
 			}
-		}else {
-
+		}else
 		}
 		return null;
 	}

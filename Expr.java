@@ -82,7 +82,7 @@ public class Expr extends Node{
 		}else if(ope == LexicalType.SUB) {
 			return "["+handler_left+"]" + "-" + "["+handler_light+"]".toString();
 		}
-		return handler.toString();
+		return null;
 	}
 
 	public Value getValue() throws Exception {
@@ -102,7 +102,7 @@ public class Expr extends Node{
 
 				String string_value =left.getSValue() + light.getSValue();
 
-				return new ValueImpl(string_value + "",ValueType.STRING);
+				return new ValueImpl(string_value,ValueType.STRING);
 			}else {
 
 				double double_value =left.getDValue() + light.getDValue();
@@ -121,9 +121,7 @@ public class Expr extends Node{
 
 			}else if(left.getType() == ValueType.STRING || light.getType() == ValueType.STRING) {
 
-				//String string_value =left.getSValue()  light.getSValue();
-
-				return new ValueImpl("エラー" + "",ValueType.STRING);
+				return new ValueImpl("エラー" ,ValueType.STRING);
 			}else {
 
 				double double_value =left.getDValue() - light.getDValue();
@@ -131,7 +129,6 @@ public class Expr extends Node{
 				return new ValueImpl(double_value + "",ValueType.DOUBLE);
 
 			}
-
 		}
 		return null;
 

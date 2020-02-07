@@ -25,6 +25,11 @@ public class Expr extends Node{
 			LexicalType.LITERAL
 			);
 
+	static final Set<LexicalType> Operatorset = EnumSet.of(
+			LexicalType.ADD,
+			LexicalType.SUB
+			);
+
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
 		return fristSet.contains(lu.getType());
 	}
@@ -35,11 +40,17 @@ public class Expr extends Node{
 
 	public boolean parse() throws Exception{
 
-		if(Const.isFirst(first)) {
+		if(Const.isFirst(first)) {//Name以外が来たら
 			handler = Const.getHandler(first, env);
 			handler.parse();
-			return true;
+			//return true;
+			first = env.getInput().get();
 
+		}else if(Operatorset.contains(operator)) {
+
+
+		}
+/*
 		}else if(Expr.isFirst(first)) {
 			handler_left = Expr.getHandler(first, env);
 			handler_left.parse();
@@ -60,7 +71,7 @@ public class Expr extends Node{
 				return true;
 			}
 		}
-
+*/
 		//Constのfirst集合(NAME以外)があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
 		handler = env.getVariable(first.getValue().getSValue());//ここに値を保存する firstがNAMEの時
 		return true;

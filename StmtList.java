@@ -76,7 +76,7 @@ public class StmtList extends Node {
 	}
 
 	public Value getValue() throws Exception {
-		return null;
+		return handler.getValue();
 	}
 }
 

@@ -52,7 +52,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 	}
 
 	public Value getValue() throws Exception {
-		return null;
+		return handler.getValue();
 	}
 }
 

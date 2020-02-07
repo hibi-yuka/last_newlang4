@@ -34,16 +34,21 @@ public class Main {
 		if (Program.isFirst(first)) {
 
 			Node handler = Program.getHandler(first, env);
-			try {
-				handler.parse();
-				System.out.println(handler);
 
-			}catch (Exception e) {
-				e.printStackTrace();
-				System.out.println(e);
-			}
+			handler.parse();
+			System.out.println(handler);
+			System.out.println(handler.getValue());
 		}
-		 else System.out.println("syntax error");
+		else System.out.println("syntax error");
 	}
 }
+
+/*try {
+	handler.parse();
+	System.out.println(handler);
+
+}catch (Exception e) {
+	e.printStackTrace();
+	System.out.println(e);
+ */
 

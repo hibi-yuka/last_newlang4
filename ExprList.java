@@ -12,7 +12,7 @@ public class ExprList extends Node{
 	Node handler;
 	List<Node> e_list = new ArrayList<Node>();
 
-	public ExprList(LexicalUnit first,Environment env) {//コンストラクタ
+	public ExprList(LexicalUnit first,Environment env) {
 		this.first = first;
 		this.env = env;
 	}
@@ -36,7 +36,7 @@ public class ExprList extends Node{
 
 	public boolean parse() throws Exception{
 
-		if(first.getType() == LexicalType.LP) { //RPもいれる
+		if(first.getType() == LexicalType.LP) {
 			first = env.getInput().get();
 		}
 
@@ -59,16 +59,13 @@ public class ExprList extends Node{
 					e_list.add(handler);
 				}else {
 					throw new Exception("ExprListにないfrst集合です");
-
-				}
-				//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
+				}//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 			}
 			env.getInput().unget(first);
 			break;
-			//無限ループが起こった場合はここが悪い可能性がある
 		}
 
-		if(first.getType() != LexicalType.RP) { //RPもいれる
+		if(first.getType() != LexicalType.RP) {
 			throw new Exception("Expr[RP]エラーです");
 		}
 		return true;
@@ -85,8 +82,8 @@ public class ExprList extends Node{
 	public Value getValue(ExprList arg) throws Exception {
 
 		for(int i =0; i < e_list.size(); i++) {
-		 e_list.get(i).getValue();
-		}//任意のインデックスの引数のgetvalueの結果を返す
+		 e_list.get(i).getValue();//任意のインデックスの引数のgetvalueの結果を返す
+		}
 		return null;
 	}
 

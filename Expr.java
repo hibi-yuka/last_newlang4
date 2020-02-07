@@ -40,7 +40,6 @@ public class Expr extends Node{
 
 	public boolean parse() throws Exception{
 
-
 		if(Const.isFirst(first)) {//Name以外が来たら 左辺
 			handler = Const.getHandler(first, env);
 			handler.parse();
@@ -51,49 +50,35 @@ public class Expr extends Node{
 			throw new Exception("Exprエラー");//ここで例外処理
 		}
 
-		ope = env.getInput().get().getType();
+		first = env.getInput().get();//ここで次の文字を読む
 
-		if(Operatorset.contains(ope)) {
+		if(Operatorset.contains(first.getType())) {
+			ope = first.getType();//opeに保存する
 
-			ope = env.getInput().get().getType();
+			first = env.getInput().get();//更に次の読む
+
+			if(Const.isFirst(first)) {//Name以外が来たら 右辺スタート
+				handler = Const.getHandler(first, env);
+				handler.parse();
+				return true;
+
+			}else if(first.getType() == LexicalType.NAME) {//NAMEが来たら
+				handler = env.getVariable(first.getValue().getSValue());
+				return true;
+			}else {
+				throw new Exception("Exprエラー");//ここで例外処理
+			}
+
 		}else {
+			env.getInput().unget(first);
 			return true; // a = 1のようなパターンあり
 		}
-
-
-
-
-		/*
-		}else if(Expr.isFirst(first)) {
-			handler_left = Expr.getHandler(first, env);
-			handler_left.parse();
-
-			first = env.getInput().get();
-
-			if(first.getType() == LexicalType.ADD) {
-				operator = env.getInput().get().getType();
-			}else {
-				throw new Exception("エラー");
-			}
-
-			first =  env.getInput().get();
-
-			if(Expr.isFirst(first)) {
-				handler_light = Expr.getHandler(first, env);
-				handler_light.parse();
-				return true;
-			}
-		}
-		 */
-		//Constのfirst集合(NAME以外)があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
-		handler = env.getVariable(first.getValue().getSValue());//ここに値を保存する firstがNAMEの時
-		return true;
 	}
 
 	public String toString() {
 
-		if(operator == LexicalType.ADD) {
-			return "["+handler_left+"]" + operator + "["+handler_light+"]".toString();
+		if(ope == LexicalType.ADD) {
+			return "["+handler_left+"]" + "+" + "["+handler_light+"]".toString();
 		}
 		return handler.toString();
 	}

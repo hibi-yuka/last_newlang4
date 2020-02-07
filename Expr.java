@@ -40,6 +40,7 @@ public class Expr extends Node{
 
 	public boolean parse() throws Exception{
 
+
 		if(Const.isFirst(first)) {//Name以外が来たら 左辺
 			handler = Const.getHandler(first, env);
 			handler.parse();

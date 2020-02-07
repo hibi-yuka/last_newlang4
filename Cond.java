@@ -103,7 +103,29 @@ public class Cond extends Node{
 			}else{
 				return  new ValueImpl("false",ValueType.STRING);
 			}
-		}else {
+
+		}else if(ope == LexicalType.GE) {
+
+			if(left.getDValue() >= right.getDValue()) {
+				return new ValueImpl("true",ValueType.STRING);
+			}else{
+				return  new ValueImpl("false",ValueType.STRING);
+			}
+		}else if(ope == LexicalType.LE) {
+
+			if(left.getDValue() <= right.getDValue()) {
+				return new ValueImpl("true",ValueType.STRING);
+			}else{
+				return  new ValueImpl("false",ValueType.STRING);
+			}
+
+		}else if(ope == LexicalType.NE) {//not EQの意味
+
+			if(left.getSValue().equals(right.getSValue())) {
+				return new ValueImpl("false",ValueType.STRING);
+			}else{
+				return  new ValueImpl("true",ValueType.STRING);
+			}
 		}
 		return null;
 	}

@@ -107,6 +107,9 @@ public class If extends Node {
 	}
 
 	public Value getValue() throws Exception {
+
+		if(cond.getValue().)
+
 		return null;
 	}
 

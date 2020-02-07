@@ -92,21 +92,48 @@ public class Expr extends Node{
 
 		if(ope == LexicalType.ADD) {
 
-			//string,int,dob
 			if(left.getType() == ValueType.INTEGER && light.getType() == ValueType.INTEGER) {
 
 				int int_value =	left.getIValue() + light.getIValue();
 
 				return new ValueImpl(int_value + "",ValueType.INTEGER);
 
+			}else if(left.getType() == ValueType.STRING || light.getType() == ValueType.STRING) {
+
+				String string_value =left.getSValue() + light.getSValue();
+
+				return new ValueImpl(string_value + "",ValueType.STRING);
+			}else {
+
+				double double_value =left.getDValue() + light.getDValue();
+
+				return new ValueImpl(double_value + "",ValueType.DOUBLE);
+
 			}
 
+		}else if(ope == LexicalType.SUB) {
 
+			if(left.getType() == ValueType.INTEGER && light.getType() == ValueType.INTEGER) {
 
-			left.
+				int int_value =	left.getIValue() - light.getIValue();
 
-			return //valueが手に入る。ledtとlift
+				return new ValueImpl(int_value + "",ValueType.INTEGER);
+
+			}else if(left.getType() == ValueType.STRING || light.getType() == ValueType.STRING) {
+
+				//String string_value =left.getSValue()  light.getSValue();
+
+				return new ValueImpl("エラー" + "",ValueType.STRING);
+			}else {
+
+				double double_value =left.getDValue() - light.getDValue();
+
+				return new ValueImpl(double_value + "",ValueType.DOUBLE);
+
+			}
+
 		}
-		//return handler.getValue();
+		return null;
+
 	}
 }

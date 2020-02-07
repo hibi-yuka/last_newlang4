@@ -8,7 +8,7 @@ public class PrintFunction extends Function {
 	 public Value invoke(ExprList arg){//結局これは何を出力する？ExprListの中身をもらう
 
 		 try {
-			System.out.println(arg.getValue(0));
+			System.out.println(arg.getValue(0).getSValue());
 		} catch (Exception e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();

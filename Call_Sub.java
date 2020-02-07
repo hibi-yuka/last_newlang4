@@ -54,8 +54,7 @@ public class Call_Sub extends Node{
 
 	public Value getValue() throws Exception {
 
-		Name.invoke(expr_list)
-		;
+		Name.invoke(expr_list);
 	}
 }
 

@@ -108,9 +108,12 @@ public class If extends Node {
 
 	public Value getValue() throws Exception {
 
-		if(cond.getValue().)
-
-		return null;
+		if(cond.getValue().getSValue() == "ture") {
+			return new ValueImpl("true",ValueType.STRING);
+		}else{
+			return  new ValueImpl("false",ValueType.STRING);
+		}
+		//return null;
 	}
 
 }

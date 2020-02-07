@@ -37,22 +37,7 @@ public class End extends Node{
 	}
 
 	public Value getValue() throws Exception {
-
 		System.exit(1);
-
 		return null;
 	}
-
 }
-
-
-//public String toString() {
-//	if (type == NodeType.END) {
-//		return "END";
-//	}else{
-//			System.out.println(type);
-//	return "Node";
-//	}
-
-
-//Stmt_list

@@ -18,7 +18,7 @@ public class Main {
 
 		System.out.println("basic parser");
 
-		File file = new File("test05.bas");
+		File file = new File("test01.bas");
 		FileReader fr = null;
 		try {
 			fr = new FileReader(file);
@@ -34,7 +34,6 @@ public class Main {
 		if (Program.isFirst(first)) {
 
 			Node handler = Program.getHandler(first, env);
-
 			handler.parse();
 			System.out.println(handler);
 			System.out.println(handler.getValue());

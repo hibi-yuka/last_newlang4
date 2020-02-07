@@ -14,7 +14,6 @@ public class Expr extends Node{
 		this.first = first;
 		this.env = env;
 		type = NodeType.EXPR;
-
 	}
 
 	static final Set<LexicalType> fristSet =  EnumSet.of( // EnumSet.of(E e)=指定された要素を最初に含む enum セットを作成します
@@ -27,10 +26,10 @@ public class Expr extends Node{
 			);
 
 	public static boolean isFirst(LexicalUnit lu) {//isFistメソッドでlu
-		return fristSet.contains(lu.getType()); //リストが特定の要素を含むか判定
+		return fristSet.contains(lu.getType());
 	}
 
-	public static Node getHandler(LexicalUnit first, Environment env) { //二つ目のメソッドここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) {
 		return new Expr(first,env);
 	}
 
@@ -53,8 +52,4 @@ public class Expr extends Node{
 	public Value getValue() throws Exception {
 		return handler.getValue();
 	}
-
 }
-
-
-

@@ -5,11 +5,9 @@ import java.util.Set;
 
 public class Subst extends Node{
 
-
 	LexicalUnit first;
 	Environment env;
 	Node handler_left,expr;
-
 
 	public Subst (LexicalUnit first,Environment env) {
 		this.first = first;
@@ -58,9 +56,7 @@ public class Subst extends Node{
 	}
 
 	public Value getValue() throws Exception {
-
 		 handler_left.setValue(expr.getValue());
-
 		 return handler_left.getValue();
 
 	}

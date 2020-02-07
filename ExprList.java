@@ -61,12 +61,13 @@ public class ExprList extends Node{
 					throw new Exception("ExprListにないfrst集合です");
 				}//unget入れとく、でないと一番外のif文でない時に読み込んだ値を捨てている
 			}
-			env.getInput().unget(first);
+			//env.getInput().unget(first);
 			break;
 		}
 
 		if(first.getType() != LexicalType.RP) {
-			throw new Exception("Expr[RP]エラーです");
+			env.getInput().unget(first);
+			//throw new Exception("Expr[RP]エラーです");
 		}
 		return true;
 	}

@@ -22,32 +22,33 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO
+			LexicalType.DO,
+			LexicalType.NL
 			);
 
-	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
+	public static boolean isFirst(LexicalUnit lu) {
 		return firstSet.contains(lu.getType());
 	}
 
-	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //二つ目のメソッド
+	public static Node getHandler(LexicalUnit first, Environment env) throws Exception {
 
-		if(Program.isFirst(first)){ //まずfirst集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(Program.isFirst(first)){
 			return new Program(first,env);
 		}
-		throw new Exception("Programにないfirst集合です");//first集合でない時
+		throw new Exception("Programにないfirst集合です");
 	}
 
-	public boolean parse() throws Exception{ //三つ目のメソッド parse＝解析をする
+	public boolean parse() throws Exception{ //parse＝解析をする
 
-		if(StmtList.isFirst(first)) { //次の判定を開始する
+		if(StmtList.isFirst(first)) {
 			handler = StmtList.getHandler(first,env);
 			handler.parse();
 			return true;
 		}
-		throw new Exception("Programエラーです");//first集合でない時
+		throw new Exception("Programエラーです");
 	}
 
-	public String toString() { //handerが出力するのはこれ
+	public String toString() {
 		return   handler.toString() ;
 	}
 

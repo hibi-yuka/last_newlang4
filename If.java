@@ -65,7 +65,6 @@ public class If extends Node {
 			stmt_list1 = StmtList.getHandler(first, env);
 			stmt_list1.parse();
 		}
-
 		//elseの場合、else ifの場合、なにもない場合
 		if(first.getType() == LexicalType.ELSEIF) {
 			elseif = If.getHandler(first, env);

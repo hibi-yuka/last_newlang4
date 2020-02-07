@@ -32,22 +32,19 @@ public class StmtList extends Node {
 		return firstSet.contains(lu.getType());
 	}
 
-	public static Node getHandler(LexicalUnit first, Environment env) throws Exception { //ここでは引数が二つ渡されている。最初に読み込んだ
+	public static Node getHandler(LexicalUnit first, Environment env) throws Exception {
 
-		if(StmtList.isFirst(first)){ //first集合を比べて、大丈夫ならPrgramインスタンスが生成される
+		if(StmtList.isFirst(first)){
 			return new StmtList(first,env);
 		}
 		throw new Exception("StmtListにないfrst集合です");//first集合でない時
 	}
 
-	public boolean parse() throws Exception{//ここでツリーを作る
+	public boolean parse() throws Exception{
 
 		while(true) {
 
-
-			//NLの処理もやりなおす
 			if(first.getType() != LexicalType.NL) {
-				System.out.println(first);
 				if(Stmt.isFirst(first)) { //次の判定を開始する
 					handler = Stmt.getHandler(first,env);
 					handler.parse();
@@ -69,7 +66,6 @@ public class StmtList extends Node {
 		}
 		return true;
 	}
-	//	throw new Exception("StmtListエラーです");//first集合でない時
 
 	public String toString() {
 		return  s_list.toString() ;

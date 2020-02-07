@@ -19,12 +19,5 @@ public enum NodeType {
     BOOL_CONSTANT,
     END,
 }
-//<varlist>
-//<else_block>
-//<else_if_block>
-//
-//<call_sub>
-//<var>
-//<leftvar>
 
 

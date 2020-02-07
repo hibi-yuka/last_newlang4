@@ -8,7 +8,7 @@ public class Expr extends Node{
 	LexicalUnit first;
 	Environment env;
 	Node handler_left,handler_light,handler;
-	LexicalType operator;
+	LexicalType ope;
 
 	public Expr (LexicalUnit first,Environment env) {//コンストラクタ
 		this.first = first;
@@ -40,17 +40,29 @@ public class Expr extends Node{
 
 	public boolean parse() throws Exception{
 
-		if(Const.isFirst(first)) {//Name以外が来たら
+		if(Const.isFirst(first)) {//Name以外が来たら 左辺
 			handler = Const.getHandler(first, env);
 			handler.parse();
 			//return true;
-			first = env.getInput().get();
-
-		}else if(Operatorset.contains(operator)) {
-
-
+		}else if(first.getType() == LexicalType.NAME) {//NAMEが来たら
+			handler = env.getVariable(first.getValue().getSValue());
+		}else {
+			throw new Exception("Exprエラー");//ここで例外処理
 		}
-/*
+
+		ope = env.getInput().get().getType();
+
+		if(Operatorset.contains(ope)) {
+
+			ope = env.getInput().get().getType();
+		}else {
+			return true; // a = 1のようなパターンあり
+		}
+
+
+
+
+		/*
 		}else if(Expr.isFirst(first)) {
 			handler_left = Expr.getHandler(first, env);
 			handler_left.parse();
@@ -71,7 +83,7 @@ public class Expr extends Node{
 				return true;
 			}
 		}
-*/
+		 */
 		//Constのfirst集合(NAME以外)があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
 		handler = env.getVariable(first.getValue().getSValue());//ここに値を保存する firstがNAMEの時
 		return true;

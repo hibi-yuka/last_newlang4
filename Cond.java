@@ -86,15 +86,9 @@ public class Cond extends Node{
 			}else{
 				return  new ValueImpl("false",ValueType.STRING);
 			}
+		}else {
 
 
-			if(handler_left > handler_right) {
-
-				return new ValueImpl("true");
-			}else{
-				return new ValueImpl("false");
-			}
-		}else
 		}
 		return null;
 	}

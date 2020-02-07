@@ -81,6 +81,11 @@ public class Cond extends Node{
 				return  new ValueImpl("false",ValueType.STRING);
 			}
 		}else if(ope == LexicalType.GT) {
+			if(handler_left.getValue().getSValue() => handler_right.getValue().getSValue()) {
+				return new ValueImpl("true",ValueType.STRING);
+			}else{
+				return  new ValueImpl("false",ValueType.STRING);
+			}
 
 
 			if(handler_left > handler_right) {

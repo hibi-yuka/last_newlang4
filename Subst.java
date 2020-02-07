@@ -59,7 +59,9 @@ public class Subst extends Node{
 
 	public Value getValue() throws Exception {
 
-		return;
+		 handler_left.setValue(expr.getValue());
+
+		 return handler_left.getValue();
 
 	}
 

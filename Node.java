@@ -31,5 +31,9 @@ public class Node { //Nodeクラス、ひな形として各メソッドを宣言
     	if (type == NodeType.END) return "END";
     	else return "Node";
     }
+//追加
+    public void setValue(Value my_v) {
+       Value v = my_v;
+    }
 
 }

@@ -5,13 +5,14 @@ public class PrintFunction extends Function {
 	public PrintFunction() {
 	}
 
-	 public Value invoke(ExprList arg) {
+	 public Value invoke(ExprList arg){//結局これは何を出力する？ExprListの中身をもらう
 
-		 System.out.println(arg);
-		 //ExprListは関数の引数
-		 //Printfanctionは引数を出力
-		 //その引数が配列状態
-		// printf(arg[0]);
+		 try {
+			System.out.println(arg.getValue(0));
+		} catch (Exception e) {
+			// TODO 自動生成された catch ブロック
+			e.printStackTrace();
+		}
 	    	return null;
 	    }
 
@@ -21,5 +22,11 @@ public class PrintFunction extends Function {
 		return "PRINT".toString();
 	}
 }
+
+//ExprList型変数arg
+
+//Printfanctionは引数を出力
+//その引数が配列状態
+// printf(arg[0]);
 
 

@@ -79,9 +79,8 @@ public class ExprList extends Node{
 		return null;
 	}
 
-	public Value getValue(ExprList arg) throws Exception {
+	public Value getValue(int n) throws Exception {
 
-		int n = e_list.size();
 		return  e_list.get(n).getValue();//任意のインデックスの引数のgetvalueの結果を返す、ExprListには"hello"などが入っているからそれを取り出していく
 
 	}

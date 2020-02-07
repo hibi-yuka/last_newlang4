@@ -42,7 +42,6 @@ public class VariableNode extends Node {
 
 	    public String toString() {
 	    	String str = var_name;
-
 	    	return str;
 	    }
 

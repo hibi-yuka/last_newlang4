@@ -69,7 +69,6 @@ public class StmtList extends Node {
 		}
 		return true;
 	}
-
 	//	throw new Exception("StmtListエラーです");//first集合でない時
 
 	public String toString() {

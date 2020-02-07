@@ -22,8 +22,7 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 			LexicalType.END,
 			LexicalType.IF,
 			LexicalType.WHILE,
-			LexicalType.DO,
-			LexicalType.NL
+			LexicalType.DO
 			);
 
 	public static boolean isFirst(LexicalUnit lu) { //１つ目のメソッド
@@ -47,7 +46,6 @@ public class Program extends Node{ //ここに3つのメソッドを書き加え
 		}
 		throw new Exception("Programエラーです");//first集合でない時
 	}
-
 
 	public String toString() { //handerが出力するのはこれ
 		return   handler.toString() ;

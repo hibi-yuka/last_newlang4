@@ -18,7 +18,7 @@ public class Main {
 
 		System.out.println("basic parser");
 
-		File file = new File("test07.bas");
+		File file = new File("test01.bas");
 		FileReader fr = null;
 		try {
 			fr = new FileReader(file);

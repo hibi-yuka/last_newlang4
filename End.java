@@ -33,12 +33,15 @@ public class End extends Node{
 	}
 
 	public String toString() {
-
 		return "END";
-
 	}
+
+	public Value getValue() throws Exception {
+		return null;
+	}
+
 }
-//Stmt_list処理可能か→true→stmt_list→またend →　stmtに
+
 
 //public String toString() {
 //	if (type == NodeType.END) {

@@ -39,13 +39,38 @@ public class Expr extends Node{
 			handler = Const.getHandler(first, env);
 			handler.parse();
 			return true;
+
+		}else if(Expr.isFirst(first)) {
+			handler_left = Expr.getHandler(first, env);
+			handler_left.parse();
+
+			first = env.getInput().get();
+
+			if(first.getType() == LexicalType.ADD) {
+				operator = env.getInput().get().getType();
+			}else {
+				throw new Exception("エラー");
+			}
+
+			first =  env.getInput().get();
+
+			if(Expr.isFirst(first)) {
+				handler_light = Expr.getHandler(first, env);
+				handler_light.parse();
+				return true;
+			}
 		}
-		//Constのfirst集合NAME以外があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
+
+		//Constのfirst集合(NAME以外)があるならConstに投げる elseで下(値はfirstの中に入っている。firstを渡す)
 		handler = env.getVariable(first.getValue().getSValue());//ここに値を保存する firstがNAMEの時
 		return true;
 	}
 
 	public String toString() {
+
+		if(operator == LexicalType.ADD) {
+			return "["+handler_left+"]" + operator + "["+handler_light+"]".toString();
+		}
 		return handler.toString();
 	}
 

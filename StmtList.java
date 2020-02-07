@@ -44,7 +44,8 @@ public class StmtList extends Node {
 
 		while(true) {
 
-			if(first.getType() != LexicalType.NL) {
+			if(first.getType() != LexicalType.NL) {//NLでないなら、処理を行う、NLなら読み飛ばす
+				
 				if(Stmt.isFirst(first)) { //次の判定を開始する
 					handler = Stmt.getHandler(first,env);
 					handler.parse();
@@ -55,7 +56,6 @@ public class StmtList extends Node {
 					handler.parse();
 					s_list.add(handler);
 					first = env.getInput().get();
-
 				}else {
 					env.getInput().unget(first);
 					break;

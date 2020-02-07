@@ -36,18 +36,8 @@ public class Main {
 			Node handler = Program.getHandler(first, env);
 			handler.parse();
 			System.out.println(handler);
-			System.out.println(handler.getValue());
+			//System.out.println(handler.getValue());
 		}
 		else System.out.println("syntax error");
 	}
 }
-
-/*try {
-	handler.parse();
-	System.out.println(handler);
-
-}catch (Exception e) {
-	e.printStackTrace();
-	System.out.println(e);
- */
-
